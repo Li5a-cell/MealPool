@@ -1,0 +1,18 @@
+# These are intellij project files
+*.iml
+.idea
+
+# This is a cache for gradle
+.gradle
+
+# These are compiled artifacts
+/build
+
+# This is where intellij builds the project
+/out
+
+# This is node modules
+node_modules/
+
+# Saving your Google key
+gc_api_file.json
