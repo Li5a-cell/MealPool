@@ -4,9 +4,15 @@
 package generated;
 
 
-import generated.tables.Receipt;
-import generated.tables.ReceiptTag;
-import generated.tables.Tag;
+import generated.tables.Comment;
+import generated.tables.Goal;
+import generated.tables.Keyword;
+import generated.tables.Recipe;
+import generated.tables.RecipeKeyword;
+import generated.tables.Schedule;
+import generated.tables.User;
+import generated.tables.UserKeyword;
+import generated.tables.UserSchedule;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +38,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = -174215708;
+	private static final long serialVersionUID = -1608222732;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -55,9 +61,13 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_110383A9_189C_4F12_BD60_7D1F15641C9E,
-			Sequences.SYSTEM_SEQUENCE_778A08D4_7643_4F05_8E1F_0B7BBD4F0A4E,
-			Sequences.SYSTEM_SEQUENCE_A5DFE954_B642_4836_A686_360EE24B6E4F);
+			Sequences.SYSTEM_SEQUENCE_1C4A0652_33DA_4404_98F4_2FCFFB842493,
+			Sequences.SYSTEM_SEQUENCE_44F52C86_B282_438F_907F_3CF9EC95FBC8,
+			Sequences.SYSTEM_SEQUENCE_539DC7CB_23FC_41CA_918A_D44DE79689B5,
+			Sequences.SYSTEM_SEQUENCE_834107A5_0353_4856_A799_A44BD110C617,
+			Sequences.SYSTEM_SEQUENCE_8A530BF9_8085_44DA_883A_1B9300C38238,
+			Sequences.SYSTEM_SEQUENCE_C3E0605D_52E6_4AFF_AEE6_421235A1D2F5,
+			Sequences.SYSTEM_SEQUENCE_F25FC286_858F_42DE_AC7D_368C8C6507AA);
 	}
 
 	@Override
@@ -69,8 +79,14 @@ public class Public extends SchemaImpl {
 
 	private final List<Table<?>> getTables0() {
 		return Arrays.<Table<?>>asList(
-			Tag.TAG,
-			Receipt.RECEIPT,
-			ReceiptTag.RECEIPT_TAG);
+			User.USER,
+			Goal.GOAL,
+			Keyword.KEYWORD,
+			Recipe.RECIPE,
+			Comment.COMMENT,
+			Schedule.SCHEDULE,
+			UserSchedule.USER_SCHEDULE,
+			UserKeyword.USER_KEYWORD,
+			RecipeKeyword.RECIPE_KEYWORD);
 	}
 }
