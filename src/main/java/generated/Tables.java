@@ -4,9 +4,15 @@
 package generated;
 
 
-import generated.tables.Receipt;
-import generated.tables.ReceiptTag;
-import generated.tables.Tag;
+import generated.tables.Comment;
+import generated.tables.Goal;
+import generated.tables.Keyword;
+import generated.tables.Recipe;
+import generated.tables.RecipeKeyword;
+import generated.tables.Schedule;
+import generated.tables.User;
+import generated.tables.UserKeyword;
+import generated.tables.UserSchedule;
 
 import javax.annotation.Generated;
 
@@ -25,17 +31,47 @@ import javax.annotation.Generated;
 public class Tables {
 
 	/**
-	 * The table public.tag
+	 * The table public.user
 	 */
-	public static final Tag TAG = generated.tables.Tag.TAG;
+	public static final User USER = generated.tables.User.USER;
 
 	/**
-	 * The table public.receipt
+	 * The table public.goal
 	 */
-	public static final Receipt RECEIPT = generated.tables.Receipt.RECEIPT;
+	public static final Goal GOAL = generated.tables.Goal.GOAL;
 
 	/**
-	 * The table public.receipt_tag
+	 * The table public.keyword
 	 */
-	public static final ReceiptTag RECEIPT_TAG = generated.tables.ReceiptTag.RECEIPT_TAG;
+	public static final Keyword KEYWORD = generated.tables.Keyword.KEYWORD;
+
+	/**
+	 * The table public.recipe
+	 */
+	public static final Recipe RECIPE = generated.tables.Recipe.RECIPE;
+
+	/**
+	 * The table public.comment
+	 */
+	public static final Comment COMMENT = generated.tables.Comment.COMMENT;
+
+	/**
+	 * The table public.schedule
+	 */
+	public static final Schedule SCHEDULE = generated.tables.Schedule.SCHEDULE;
+
+	/**
+	 * The table public.user_schedule
+	 */
+	public static final UserSchedule USER_SCHEDULE = generated.tables.UserSchedule.USER_SCHEDULE;
+
+	/**
+	 * The table public.user_keyword
+	 */
+	public static final UserKeyword USER_KEYWORD = generated.tables.UserKeyword.USER_KEYWORD;
+
+	/**
+	 * The table public.recipe_keyword
+	 */
+	public static final RecipeKeyword RECIPE_KEYWORD = generated.tables.RecipeKeyword.RECIPE_KEYWORD;
 }
