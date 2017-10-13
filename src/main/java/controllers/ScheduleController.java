@@ -15,6 +15,9 @@ import org.joda.time.DateTime;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +25,8 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ScheduleController {
+
+    private static final DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 
     private ScheduleDao scheduleDao;
     private RecipeDao recipeDao;
@@ -49,9 +54,15 @@ public class ScheduleController {
     }
 
     @GET
-    public List<ScheduleResource> find(long time) {
+    public List<ScheduleResource> find(String time) {
         UserRecord user = userDao.get(Dummies.DUMMY_EATER);
-        List<ScheduleRecord> scheduleRecords = scheduleDao.find(user.getId(), user.getZip(), new DateTime(time));
+
+        List<ScheduleRecord> scheduleRecords = null;
+        try {
+            scheduleRecords = scheduleDao.find(user.getId(), user.getZip(), new DateTime(df.parse(time)));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
         List<ScheduleResource> scheduleResources = new ArrayList<>(scheduleRecords.size());
         for (ScheduleRecord scheduleRecord : scheduleRecords) {
