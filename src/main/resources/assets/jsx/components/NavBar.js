@@ -21,6 +21,7 @@ class NavBar extends Component {
           isLoggedIn: true,
           user: this.props.user
         }}}>My Profile</Link></div>
+        <br/><br/>
       </div>
     )
   }

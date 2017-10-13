@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import MealRow from './MealRow.js'
 
-const fakeMeals = [
+const sunMeals = [
   {
     pickUp: true,
     sitDown: false,
@@ -12,7 +12,7 @@ const fakeMeals = [
     },
     recipe: {
       title: 'Apple Pie',
-      description: 'Scrumptious, definitely healthy'
+      description: 'Scrumptious, made with fresh apples'
     }
   }, {
     pickUp: true,
@@ -22,16 +22,120 @@ const fakeMeals = [
     },
     recipe: {
       title: 'Chicken Salad',
-      description: 'With apples, definitely healthy!'
+      description: 'Beautiful organic chicken salad with homemade dressing'
     }
   }
+]
+
+const monMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Lisa'
+        },
+        recipe: {
+            title: 'Fish Tacos',
+            description: 'Made with fresh cod, pico, and red onion'
+        }
+    }
+]
+
+const tueMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Emily'
+        },
+        recipe: {
+            title: 'Beef Stirfry',
+            description: 'Beef stir fry with assorted vegetables'
+        }
+    }, {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Ryan'
+        },
+        recipe: {
+            title: 'Chicken Noodle Soup',
+            description: 'Made with chicken breast, carrots, and celery'
+        }
+    }
+]
+
+const wedMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Emily'
+        },
+        recipe: {
+            title: 'Beef Stirfry',
+            description: 'Beef stir fry with assorted vegetables'
+        }
+    }, {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Ryan'
+        },
+        recipe: {
+            title: 'Chicken Noodle Soup',
+            description: 'Made with chicken breast, carrots, and celery'
+        }
+    }
+]
+
+const thuMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Lisa'
+        },
+        recipe: {
+            title: 'Chili',
+            description: 'Spicy chili with ground beef, beans, and peppers'
+        }
+    }
+]
+
+const friMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'John Smith'
+        },
+        recipe: {
+            title: 'Cherry Pie',
+            description: 'Scrumptious, made with fresh cherries'
+        }
+    }
+]
+
+const satMeals = [
+    {
+        pickUp: true,
+        sitDown: false,
+        chef: {
+            name: 'Ryan'
+        },
+        recipe: {
+            title: 'Roasted Chicken and Vegetables',
+            description: 'Organic chicken legs, baked with carrots and potatoes!'
+        }
+    }
 ]
 
 class ScheduleEat extends Component {
   constructor() {
     super()
     this.state = {
-      meals: fakeMeals //hard-coded for fake meals currently
+      meals: sunMeals //hard-coded for fake meals currently
     }
     this.selectDay = this.selectDay.bind(this)
   }
@@ -39,6 +143,44 @@ class ScheduleEat extends Component {
     evt.preventDefault()
     evt.stopPropagation()
     //hard-coded for dates this week
+    switch(evt.target.name) {
+        case "10-15-2017":
+          this.setState({
+              meals: sunMeals
+          })
+          break;
+        case "10-16-2017":
+            this.setState({
+                meals: monMeals
+            })
+          break;
+        case "10-17-2017":
+            this.setState({
+                meals: tueMeals
+            })
+          break;
+        case "10-18-2017":
+            this.setState({
+                meals: wedMeals
+            })
+          break;
+        case "10-19-2017":
+            this.setState({
+                meals: thuMeals
+            })
+          break;
+        case "10-20-2017":
+            this.setState({
+                meals: friMeals
+            })
+          break;
+        case "10-21-2017":
+            this.setState({
+                meals: satMeals
+            })
+          break;
+    }
+      /*
     axios.get('/api/schedule', evt.target.name) //date format: "MM-DD-YYYY"
       .then(res => res.data)
       .then(data => {
@@ -46,6 +188,7 @@ class ScheduleEat extends Component {
           meals: data
         })
       })
+      */
   }
   render() {
     return (
