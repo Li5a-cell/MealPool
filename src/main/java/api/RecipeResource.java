@@ -1,8 +1,8 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import generated.tables.records.AccountRecord;
 import generated.tables.records.RecipeRecord;
-import generated.tables.records.UserRecord;
 
 import java.math.BigDecimal;
 
@@ -32,7 +32,7 @@ public class RecipeResource {
     @JsonProperty
     public String photo;
 
-    public RecipeResource(UserRecord chef, RecipeRecord recipe) {
+    public RecipeResource(AccountRecord chef, RecipeRecord recipe) {
         this.chef = new UserResource(chef);
         this.description = recipe.getDescription();
         this.name = recipe.getName();

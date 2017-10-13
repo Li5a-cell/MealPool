@@ -33,7 +33,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class RecipeKeyword extends TableImpl<RecipeKeywordRecord> {
 
-	private static final long serialVersionUID = 1341837724;
+	private static final long serialVersionUID = 1760609224;
 
 	/**
 	 * The reference instance of <code>public.recipe_keyword</code>
@@ -85,7 +85,7 @@ public class RecipeKeyword extends TableImpl<RecipeKeywordRecord> {
 	 */
 	@Override
 	public List<ForeignKey<RecipeKeywordRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<RecipeKeywordRecord, ?>>asList(Keys.CONSTRAINT_E, Keys.CONSTRAINT_EF);
+		return Arrays.<ForeignKey<RecipeKeywordRecord, ?>>asList(Keys.CONSTRAINT_EF, Keys.CONSTRAINT_EF4);
 	}
 
 	/**

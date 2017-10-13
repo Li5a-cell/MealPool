@@ -1,6 +1,8 @@
 package controllers;
 
+import api.UserCreateRequest;
 import api.UserUpdateRequest;
+import dao.GoalDao;
 import dao.UserDao;
 import dummy.Dummies;
 
@@ -13,13 +15,21 @@ import javax.ws.rs.core.MediaType;
 public class UserController {
 
     private UserDao userDao;
+    private GoalDao goalDao;
 
-    public UserController(UserDao userDao) {
+    public UserController(UserDao userDao, GoalDao goalDao) {
         this.userDao = userDao;
+        this.goalDao = goalDao;
+    }
+
+    @POST
+    public void create(UserCreateRequest request) {
+        userDao.insert(request.email, request.displayName, request.password, request.zip, request.weeklyEatingGoal, request.weeklyCookingGoal, request.photo, null);
     }
 
     @PUT
     public void update(UserUpdateRequest request) {
         userDao.update(Dummies.DUMMY_EATER, request.email, request.displayName, request.zip, request.weeklyEatingGoal, request.weeklyCookingGoal, request.photo);
+        goalDao.update(Dummies.DUMMY_EATER, request.weeklyEatingGoal, request.weeklyCookingGoal);
     }
 }

@@ -4,13 +4,13 @@
 package generated;
 
 
+import generated.tables.Account;
 import generated.tables.Comment;
 import generated.tables.Goal;
 import generated.tables.Keyword;
 import generated.tables.Recipe;
 import generated.tables.RecipeKeyword;
 import generated.tables.Schedule;
-import generated.tables.User;
 import generated.tables.UserKeyword;
 import generated.tables.UserSchedule;
 
@@ -38,7 +38,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 290038335;
+	private static final long serialVersionUID = 488741493;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -61,13 +61,13 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_42CA9C6A_BAF3_438F_82A4_8E6F9A706F61,
-			Sequences.SYSTEM_SEQUENCE_51414C14_D85B_4D98_B2E9_72B3EEB4FD28,
-			Sequences.SYSTEM_SEQUENCE_6DCDD07B_0CE5_4D17_A7FE_E8F7E85BB35E,
-			Sequences.SYSTEM_SEQUENCE_8C79C44A_CD2A_4E2E_9DD7_3616022823BB,
-			Sequences.SYSTEM_SEQUENCE_D0AB9FBC_8282_425F_BA62_3F28CB56C2AB,
-			Sequences.SYSTEM_SEQUENCE_E1C2955F_B6B8_41DB_8E07_38B3C92165DF,
-			Sequences.SYSTEM_SEQUENCE_EBD8CBFD_3FC0_4BC7_8FA5_DB9087F013CC);
+			Sequences.SYSTEM_SEQUENCE_0386C29F_A568_474F_B259_A7541F72BD03,
+			Sequences.SYSTEM_SEQUENCE_6E67AB42_93A9_4C5C_BEA3_43113C0798F7,
+			Sequences.SYSTEM_SEQUENCE_A65F3D1B_ED28_498C_AF83_8A0196492E6A,
+			Sequences.SYSTEM_SEQUENCE_A76E37E6_C59F_48CD_934C_3BD6C16F333A,
+			Sequences.SYSTEM_SEQUENCE_B80F3516_A53B_4154_BBF7_A98B094A0305,
+			Sequences.SYSTEM_SEQUENCE_C17E7E7E_FA23_4F20_A96A_4A7B7A0C7D10,
+			Sequences.SYSTEM_SEQUENCE_CE05BB83_DBD2_44C5_8399_08FD92581550);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Public extends SchemaImpl {
 
 	private final List<Table<?>> getTables0() {
 		return Arrays.<Table<?>>asList(
-			User.USER,
+			Account.ACCOUNT,
 			Goal.GOAL,
 			Keyword.KEYWORD,
 			Recipe.RECIPE,

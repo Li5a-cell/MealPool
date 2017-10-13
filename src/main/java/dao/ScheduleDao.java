@@ -54,30 +54,10 @@ public class ScheduleDao {
         List<ScheduleRecord> records = dsl.select()
                 .from(SCHEDULE)
                 .join(RECIPE).on(SCHEDULE.RECIPEID.eq(RECIPE.ID))
-                .join(USER).on(RECIPE.CHEFID.eq(USER.ID))
-                .where(RECIPE.CHEFID.ne(userId)).and(USER.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
+                .join(ACCOUNT).on(RECIPE.CHEFID.eq(ACCOUNT.ID))
+                .where(RECIPE.CHEFID.ne(userId)).and(ACCOUNT.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
                 .fetch().into(SCHEDULE);
         return records;
-    }
-
-    /**
-     * Sign up to participate
-     * Used by: eater
-     * @param scheduleId
-     * @param userId
-     * @return
-     */
-    public int schedule(int scheduleId, int userId) {
-        UserScheduleRecord record = dsl.selectFrom(USER_SCHEDULE)
-                .where(USER_SCHEDULE.SCHEDULEID.eq(scheduleId)).and(USER_SCHEDULE.USERID.eq(userId)).fetchOne();
-
-        if (record == null) {
-            record = dsl.insertInto(USER_SCHEDULE, USER_SCHEDULE.SCHEDULEID, USER_SCHEDULE.USERID)
-                    .values(scheduleId, userId)
-                    .returning(USER_SCHEDULE.ID).fetchOne();
-        }
-
-        return record.getId();
     }
 
     /**
@@ -93,25 +73,5 @@ public class ScheduleDao {
                 .where(USER_SCHEDULE.SCHEDULEID.eq(scheduleId))
                 .fetch().into(USER_SCHEDULE);
         return records;
-    }
-
-    /**
-     * Approve a user's participation
-     * Used by: chef
-     * @param id
-     * @param approve
-     */
-    public void approve(int id, boolean approve) {
-        dsl.update(USER_SCHEDULE).set(USER_SCHEDULE.APPROVED, approve).where(USER_SCHEDULE.ID.eq(id)).returning().execute();
-    }
-
-    /**
-     * Verify a user's participation
-     * Used by: chef
-     * @param id
-     * @param verified
-     */
-    public void verify(int id, boolean verified) {
-        dsl.update(USER_SCHEDULE).set(USER_SCHEDULE.VERIFIED, verified).where(USER_SCHEDULE.ID.eq(id)).returning().execute();
     }
 }

@@ -1,7 +1,7 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import generated.tables.records.UserRecord;
+import generated.tables.records.AccountRecord;
 
 public class UserResource {
 
@@ -29,7 +29,7 @@ public class UserResource {
     @JsonProperty
     public int weeklyCookingGoal;
 
-    public UserResource(UserRecord userRecord) {
+    public UserResource(AccountRecord userRecord) {
         this.id = userRecord.getId();
         this.email = userRecord.getEmail();
         this.displayName = userRecord.getDisplayname();

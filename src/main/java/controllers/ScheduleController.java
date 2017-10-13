@@ -3,13 +3,14 @@ package controllers;
 import api.ScheduleRequest;
 import api.ScheduleResource;
 import api.UserScheduleResource;
+import dao.GoalDao;
 import dao.RecipeDao;
 import dao.ScheduleDao;
 import dao.UserDao;
 import dummy.Dummies;
 import generated.tables.records.RecipeRecord;
 import generated.tables.records.ScheduleRecord;
-import generated.tables.records.UserRecord;
+import generated.tables.records.AccountRecord;
 import generated.tables.records.UserScheduleRecord;
 import org.joda.time.DateTime;
 
@@ -31,8 +32,9 @@ public class ScheduleController {
     private ScheduleDao scheduleDao;
     private RecipeDao recipeDao;
     private UserDao userDao;
+    private GoalDao goalDao;
 
-    public ScheduleController(ScheduleDao scheduleDao, RecipeDao recipeDao, UserDao userDao) {
+    public ScheduleController(ScheduleDao scheduleDao, RecipeDao recipeDao, UserDao userDao, GoalDao goalDao) {
         this.scheduleDao = scheduleDao;
         this.recipeDao = recipeDao;
         this.userDao = userDao;
@@ -42,7 +44,7 @@ public class ScheduleController {
     public void create(ScheduleRequest scheduleRequest) {
         RecipeRecord recipe = recipeDao.get(Dummies.DUMMY_EATER, scheduleRequest.name);
         if (recipe == null) {
-            recipe = recipeDao.insert(scheduleRequest.name, scheduleRequest.chefId, scheduleRequest.description, scheduleRequest.price, scheduleRequest.servings, scheduleRequest.photo, null);
+            recipe = recipeDao.insert(scheduleRequest.name, Dummies.DUMMY_CHEF, scheduleRequest.description, scheduleRequest.price, scheduleRequest.servings, scheduleRequest.photo, null);
         } else if (!(recipe.getPrice().equals(scheduleRequest.price) && recipe.getPhoto().equals(scheduleRequest.photo))) {
             recipe.setPrice(scheduleRequest.price);
             recipe.setPhoto(scheduleRequest.photo);
@@ -51,11 +53,12 @@ public class ScheduleController {
 
         DateTime time = new DateTime(scheduleRequest.time);
         scheduleDao.insert(recipe.getId(), time, scheduleRequest.pickUp, scheduleRequest.sitDown);
+        goalDao.incrementCookingGoal(Dummies.DUMMY_CHEF);
     }
 
     @GET
     public List<ScheduleResource> find(String time) {
-        UserRecord user = userDao.get(Dummies.DUMMY_EATER);
+        AccountRecord user = userDao.get(Dummies.DUMMY_EATER);
 
         List<ScheduleRecord> scheduleRecords = null;
         try {
@@ -67,7 +70,7 @@ public class ScheduleController {
         List<ScheduleResource> scheduleResources = new ArrayList<>(scheduleRecords.size());
         for (ScheduleRecord scheduleRecord : scheduleRecords) {
             RecipeRecord recipe = recipeDao.get(scheduleRecord.getRecipeid());
-            UserRecord chef = userDao.get(recipe.getChefid());
+            AccountRecord chef = userDao.get(recipe.getChefid());
             scheduleResources.add(new ScheduleResource(chef, recipe, scheduleRecord));
         }
         return scheduleResources;
@@ -80,27 +83,9 @@ public class ScheduleController {
 
         List<UserScheduleResource> userScheduleResources = new ArrayList<>(records.size());
         for (UserScheduleRecord record : records) {
-            UserRecord eater = userDao.get(record.getUserid());
+            AccountRecord eater = userDao.get(record.getUserid());
             userScheduleResources.add(new UserScheduleResource(eater, record));
         }
         return userScheduleResources;
-    }
-
-    @Path("/{id}/signup")
-    @PUT
-    public void signUp(@PathParam("id") Integer id) {
-        scheduleDao.schedule(id, Dummies.DUMMY_EATER);
-    }
-
-    @Path("/{id}/approve")
-    @POST
-    public void approve(@PathParam("id") Integer id, boolean approved) {
-        scheduleDao.approve(id, approved);
-    }
-
-    @Path("/{id}/verify")
-    @POST
-    public void verify(@PathParam("id") Integer id, boolean verified) {
-        scheduleDao.verify(id, verified);
     }
 }
