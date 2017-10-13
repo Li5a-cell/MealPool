@@ -36,7 +36,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Schedule extends TableImpl<ScheduleRecord> {
 
-	private static final long serialVersionUID = 520964788;
+	private static final long serialVersionUID = -357739796;
 
 	/**
 	 * The reference instance of <code>public.schedule</code>
@@ -55,11 +55,6 @@ public class Schedule extends TableImpl<ScheduleRecord> {
 	 * The column <code>public.schedule.id</code>.
 	 */
 	public final TableField<ScheduleRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
-
-	/**
-	 * The column <code>public.schedule.chefid</code>.
-	 */
-	public final TableField<ScheduleRecord, Integer> CHEFID = createField("chefid", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>public.schedule.recipeid</code>.
@@ -116,7 +111,7 @@ public class Schedule extends TableImpl<ScheduleRecord> {
 	 */
 	@Override
 	public UniqueKey<ScheduleRecord> getPrimaryKey() {
-		return Keys.CONSTRAINT_50C;
+		return Keys.CONSTRAINT_50;
 	}
 
 	/**
@@ -124,7 +119,7 @@ public class Schedule extends TableImpl<ScheduleRecord> {
 	 */
 	@Override
 	public List<UniqueKey<ScheduleRecord>> getKeys() {
-		return Arrays.<UniqueKey<ScheduleRecord>>asList(Keys.CONSTRAINT_50C);
+		return Arrays.<UniqueKey<ScheduleRecord>>asList(Keys.CONSTRAINT_50);
 	}
 
 	/**
@@ -132,7 +127,7 @@ public class Schedule extends TableImpl<ScheduleRecord> {
 	 */
 	@Override
 	public List<ForeignKey<ScheduleRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<ScheduleRecord, ?>>asList(Keys.CONSTRAINT_5, Keys.CONSTRAINT_50);
+		return Arrays.<ForeignKey<ScheduleRecord, ?>>asList(Keys.CONSTRAINT_5);
 	}
 
 	/**

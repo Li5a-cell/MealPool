@@ -22,17 +22,16 @@ public class ScheduleDao {
     /**
      * Inserts a new schedule entry
      * Used by: chef
-     * @param chefId
      * @param recipeId
      * @param time
      * @param pickUp
      * @param sitDown
      * @return
      */
-    public int insert(int chefId, int recipeId, DateTime time, boolean pickUp, boolean sitDown) {
+    public int insert(int recipeId, DateTime time, boolean pickUp, boolean sitDown) {
         java.sql.Timestamp sDate = new java.sql.Timestamp(time.getMillis());
-        ScheduleRecord record = dsl.insertInto(SCHEDULE, SCHEDULE.CHEFID, SCHEDULE.RECIPEID, SCHEDULE.SCHEDULED, SCHEDULE.PICKUP, SCHEDULE.SITDOWN)
-                .values(chefId, recipeId, sDate, pickUp, sitDown)
+        ScheduleRecord record = dsl.insertInto(SCHEDULE, SCHEDULE.RECIPEID, SCHEDULE.SCHEDULED, SCHEDULE.PICKUP, SCHEDULE.SITDOWN)
+                .values(recipeId, sDate, pickUp, sitDown)
                 .returning(SCHEDULE.ID).fetchOne();
 
         return record.getId();
@@ -54,8 +53,9 @@ public class ScheduleDao {
 
         List<ScheduleRecord> records = dsl.select()
                 .from(SCHEDULE)
-                .join(USER).on(SCHEDULE.CHEFID.eq(USER.ID))
-                .where(SCHEDULE.CHEFID.ne(userId)).and(USER.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
+                .join(RECIPE).on(SCHEDULE.RECIPEID.eq(RECIPE.ID))
+                .join(USER).on(RECIPE.CHEFID.eq(USER.ID))
+                .where(RECIPE.CHEFID.ne(userId)).and(USER.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
                 .fetch().into(SCHEDULE);
         return records;
     }

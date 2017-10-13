@@ -19,6 +19,10 @@ public class ScheduleRequest {
     @NotNull
     public BigDecimal price;
 
+    public String description;
+
+    public int servings;
+
     public boolean pickUp;
 
     public boolean sitDown;
