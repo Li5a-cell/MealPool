@@ -1,0 +1,96 @@
+DROP TABLE IF EXISTS recipe_keyword;
+DROP TABLE IF EXISTS user_keyword;
+DROP TABLE IF EXISTS user_schedule;
+DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS recipe;
+DROP TABLE IF EXISTS keyword;
+DROP TABLE IF EXISTS goal;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user (
+  id INT UNSIGNED AUTO_INCREMENT,
+  password varchar(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  displayName VARCHAR(255) UNIQUE NOT NULL,
+  zip VARCHAR(255) NOT NULL,
+  favoriteCount INT UNSIGNED,
+  photo VARCHAR(255),
+  weeklyEatingGoal INT UNSIGNED DEFAULT 0,
+  weeklyCookingGoal INT UNSIGNED DEFAULT 0,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE goal (
+  id INT UNSIGNED AUTO_INCREMENT,
+  userId INT UNSIGNED NOT NULL,
+  week varchar(10) NOT NULL,
+  eatingGoal INT UNSIGNED DEFAULT 0,
+  eatingCount INT UNSIGNED DEFAULT 0,
+  cookingGoal INT UNSIGNED DEFAULT 0,
+  cookingCount INT UNSIGNED DEFAULT 0,
+  FOREIGN KEY (userId) REFERENCES user(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE keyword (
+  id INT UNSIGNED AUTO_INCREMENT,
+  name VARCHAR(255) UNIQUE NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE recipe (
+  id INT UNSIGNED AUTO_INCREMENT,
+  chefId INT UNSIGNED NOT NULL,
+  description VARCHAR(1000),
+  name VARCHAR(255),
+  favoriteCount INT UNSIGNED DEFAULT 0,
+  servings INT UNSIGNED DEFAULT 0,
+  purchasedCount INT UNSIGNED DEFAULT 0,
+  price DECIMAL(12,2) DEFAULT 0,
+  photo VARCHAR(255),
+  FOREIGN KEY (chefId) REFERENCES user(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE comment (
+  id INT UNSIGNED AUTO_INCREMENT,
+  recipeId INT UNSIGNED NOT NULL,
+  text VARCHAR(1000) NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipe(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE schedule (
+  id INT UNSIGNED AUTO_INCREMENT,
+  recipeId INT UNSIGNED NOT NULL,
+  scheduled TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  pickUp BOOLEAN NOT NULL,
+  sitDown BOOLEAN NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipe(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE user_schedule (
+  id INT UNSIGNED AUTO_INCREMENT,
+  scheduleId INT UNSIGNED,
+  userId INT UNSIGNED,
+  approved BOOLEAN DEFAULT NULL,
+  verified BOOLEAN DEFAULT NULL,
+  FOREIGN KEY (scheduleId) REFERENCES schedule(id),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE user_keyword (
+  userId INT UNSIGNED NOT NULL,
+  keywordId INT UNSIGNED NOT NULL,
+  FOREIGN KEY (userId) REFERENCES user(id),
+  FOREIGN KEY (keywordId) REFERENCES keyword(id)
+);
+
+CREATE TABLE recipe_keyword (
+  recipeId INT UNSIGNED NOT NULL,
+  keywordId INT UNSIGNED NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipe(id),
+  FOREIGN KEY (keywordId) REFERENCES keyword(id)
+);

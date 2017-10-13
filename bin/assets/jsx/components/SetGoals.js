@@ -32,34 +32,29 @@ class SetGoals extends Component {
     return (
       <div id="goals">
         <div id="setGoals">
-          <h1>Set your current goals.</h1>
-          <div id="setGoalsForm">
+          Set your current goals.
+        <div id="setGoalsForm">
             <form>
-              <div className="goalsBlock">
-                I want to <b>cook</b>&nbsp;
+              Cook:
             <input
-                  name="cookGoals"
-                  id="setGoalsCook"
-                  type="number"
-                  value={this.state.cookGoals}
-                  min="0"
-                  max="7"
-                  onChange={this.handleFormChange}
-                />
-                &nbsp; meals this week.
-              </div>
-              <div className="goalsBlock">
-                I want to <b>eat</b>&nbsp;
+                name="cookGoals"
+                id="setGoalsCook"
+                type="number"
+                value={this.state.cookGoals}
+                min="0"
+                max="7"
+                onChange={this.handleFormChange}
+              />
+              Eat:
             <input
-                  name="eatGoals"
-                  id="setGoalsEat"
-                  type="number"
-                  value={this.state.eatGoals}
-                  min="0"
-                  max="21"
-                  onChange={this.handleFormChange}
-                /> &nbsp; meals this week.
-              </div>
+                name="eatGoals"
+                id="setGoalsEat"
+                type="number"
+                value={this.state.eatGoals}
+                min="0"
+                max="21"
+                onChange={this.handleFormChange}
+              />
             </form>
           </div>
           <div id="setGoalsBtns">
@@ -74,9 +69,10 @@ class SetGoals extends Component {
             </button>
             )} />
           </div>
+          <hr />
         </div>
         <div id="runningGoals">
-          <h1>Your progress:</h1>
+          Your progress:
           {this.state.eatGoals > 0 ?
             <div>You have eaten {this.state.eatMeals} / {this.state.eatGoals} meals.</div> : null}
           {this.state.cookGoals > 0 ?

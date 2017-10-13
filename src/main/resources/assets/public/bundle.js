@@ -30458,33 +30458,59 @@ var SetGoals = function (_Component) {
         _react2.default.createElement(
           'div',
           { id: 'setGoals' },
-          'Set your current goals.',
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Set your current goals.'
+          ),
           _react2.default.createElement(
             'div',
             { id: 'setGoalsForm' },
             _react2.default.createElement(
               'form',
               null,
-              'Cook:',
-              _react2.default.createElement('input', {
-                name: 'cookGoals',
-                id: 'setGoalsCook',
-                type: 'number',
-                value: this.state.cookGoals,
-                min: '0',
-                max: '7',
-                onChange: this.handleFormChange
-              }),
-              'Eat:',
-              _react2.default.createElement('input', {
-                name: 'eatGoals',
-                id: 'setGoalsEat',
-                type: 'number',
-                value: this.state.eatGoals,
-                min: '0',
-                max: '21',
-                onChange: this.handleFormChange
-              })
+              _react2.default.createElement(
+                'div',
+                { className: 'goalsBlock' },
+                'I want to ',
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  'cook'
+                ),
+                '\xA0',
+                _react2.default.createElement('input', {
+                  name: 'cookGoals',
+                  id: 'setGoalsCook',
+                  type: 'number',
+                  value: this.state.cookGoals,
+                  min: '0',
+                  max: '7',
+                  onChange: this.handleFormChange
+                }),
+                '\xA0 meals this week.'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'goalsBlock' },
+                'I want to ',
+                _react2.default.createElement(
+                  'b',
+                  null,
+                  'eat'
+                ),
+                '\xA0',
+                _react2.default.createElement('input', {
+                  name: 'eatGoals',
+                  id: 'setGoalsEat',
+                  type: 'number',
+                  value: this.state.eatGoals,
+                  min: '0',
+                  max: '21',
+                  onChange: this.handleFormChange
+                }),
+                ' \xA0 meals this week.'
+              )
             )
           ),
           _react2.default.createElement(
@@ -30503,13 +30529,16 @@ var SetGoals = function (_Component) {
                   'Set Goals'
                 );
               } })
-          ),
-          _react2.default.createElement('hr', null)
+          )
         ),
         _react2.default.createElement(
           'div',
           { id: 'runningGoals' },
-          'Your progress:',
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Your progress:'
+          ),
           this.state.eatGoals > 0 ? _react2.default.createElement(
             'div',
             null,
