@@ -35,7 +35,7 @@ class SetGoals extends Component {
                 type="number"
                 value={this.state.cookGoals}
                 min="0"
-                max="21"
+                max="7"
                 onChange={this.handleFormChange}
               />
               Eat:

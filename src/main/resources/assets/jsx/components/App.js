@@ -14,7 +14,6 @@ class App extends Component {
   render() {
     return (
       <div id="main">
-        <NavBar />
         {
           this.state.isLoggedIn ? <UserProfile /> : <Signup />
         }
