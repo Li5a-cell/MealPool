@@ -1,19 +1,18 @@
+import api.ScheduleRequest;
 import controllers.*;
-
-import dao.KeywordDao;
-import dao.RecipeDao;
-import dao.ScheduleDao;
-import dao.UserDao;
+import dao.*;
 import dummy.Dummies;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import io.dropwizard.assets.*;
 import org.h2.jdbcx.JdbcConnectionPool;
-
 import org.jooq.SQLDialect;
 import org.jooq.impl.DefaultConfiguration;
+
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 public class SimpleApplication extends Application<Configuration> {
 
@@ -51,15 +50,40 @@ public class SimpleApplication extends Application<Configuration> {
 		RecipeDao recipeDao = new RecipeDao(jooqConfig, keywordDao);
 		UserDao userDao = new UserDao(jooqConfig, keywordDao);
 		ScheduleDao scheduleDao = new ScheduleDao(jooqConfig);
+		UserScheduleDao userScheduleDao = new UserScheduleDao(jooqConfig);
+		GoalDao goalDao = new GoalDao(jooqConfig, userDao);
+
+		ScheduleController scheduleController = new ScheduleController(scheduleDao, recipeDao, userDao, goalDao);
+		UserController userController = new UserController(userDao, goalDao);
+		IndexController indexController = new IndexController();
+		UserScheduleController userScheduleController = new UserScheduleController(userScheduleDao, goalDao);
 
 		// Register all Controllers below.  Don't forget
 		// you need class and method @Path annotations!
-		env.jersey().register(new ReceiptImageController());
-		env.jersey().register(new ScheduleController(scheduleDao, recipeDao, userDao));
-		env.jersey().register(new UserController(userDao));
-		env.jersey().register(new IndexController());
+		env.jersey().register(scheduleController);
+		env.jersey().register(userController);
+		env.jersey().register(indexController);
+		env.jersey().register(userScheduleController);
 
+		initializeDummyData(userDao, scheduleController);
+	}
+
+	private void initializeDummyData(UserDao userDao, ScheduleController scheduleController) {
 		Dummies.DUMMY_CHEF = userDao.insert("sb2483@cornell.edu", "Chef", "password", "10044", 0, 0, null, null);
 		Dummies.DUMMY_EATER = userDao.insert("rzl6@cornell.edu", "Eater", "password", "10044", 0, 0, null, null);
+
+//		ScheduleRequest scheduleRequest = new ScheduleRequest();
+//		scheduleRequest.name = "Chicken, rice, and green beans";
+//		scheduleRequest.price = new BigDecimal(10);
+//		scheduleRequest.description = "Sautéed chicken, delicious green beans and creamy mushroom soup";
+//		scheduleRequest.pickUp = true;
+//		scheduleRequest.sitDown = true;
+//		scheduleRequest.servings = 4;
+//		Calendar date = Calendar.getInstance();
+//		while (date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+//			date.add(Calendar.DATE, 1);
+//		}
+//		scheduleRequest.time = date.getTimeInMillis();
+//		scheduleController.create(scheduleRequest);
 	}
 }

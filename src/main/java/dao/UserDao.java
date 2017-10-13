@@ -7,8 +7,7 @@ import org.jooq.impl.DSL;
 
 import java.util.List;
 
-import static generated.Tables.USER;
-import static generated.Tables.USER_KEYWORD;
+import static generated.Tables.*;
 
 public class UserDao {
 
@@ -21,7 +20,7 @@ public class UserDao {
     }
 
     /**
-     * Create a user account
+     * Create a user USER
      * Used by: chefs and eaters
      * @param email
      * @param displayName

@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Goal extends TableImpl<GoalRecord> {
 
-	private static final long serialVersionUID = 513755810;
+	private static final long serialVersionUID = -154387150;
 
 	/**
 	 * The reference instance of <code>public.goal</code>
@@ -59,6 +59,11 @@ public class Goal extends TableImpl<GoalRecord> {
 	 * The column <code>public.goal.userid</code>.
 	 */
 	public final TableField<GoalRecord, Integer> USERID = createField("userid", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+	/**
+	 * The column <code>public.goal.week</code>.
+	 */
+	public final TableField<GoalRecord, String> WEEK = createField("week", org.jooq.impl.SQLDataType.VARCHAR.length(10).nullable(false), this, "");
 
 	/**
 	 * The column <code>public.goal.eatinggoal</code>.

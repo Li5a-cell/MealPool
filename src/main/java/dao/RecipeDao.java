@@ -33,7 +33,7 @@ public class RecipeDao {
      * @param keywords
      * @return
      */
-    public RecipeRecord insert(String name, int chefId, String description, BigDecimal price, int servings, String photo, Set<String> keywords) {
+    public RecipeRecord insert(String name, int chefId, String description, BigDecimal price, Integer servings, String photo, Set<String> keywords) {
         RecipeRecord record = dsl.insertInto(RECIPE, RECIPE.NAME, RECIPE.CHEFID, RECIPE.DESCRIPTION, RECIPE.PRICE, RECIPE.SERVINGS, RECIPE.PHOTO)
                 .values(name, chefId, description, price, servings, photo)
                 .returning().fetchOne();
@@ -53,8 +53,13 @@ public class RecipeDao {
         return record;
     }
 
-    public RecipeRecord get(String name) {
-        RecipeRecord record = dsl.selectFrom(RECIPE).where(RECIPE.NAME.eq(name)).fetchOne();
+    public RecipeRecord get(int id) {
+        RecipeRecord record = dsl.selectFrom(RECIPE).where(RECIPE.ID.eq(id)).fetchOne();
+        return record;
+    }
+
+    public RecipeRecord get(int chefId, String name) {
+        RecipeRecord record = dsl.selectFrom(RECIPE).where(RECIPE.NAME.eq(name)).and(RECIPE.CHEFID.eq(chefId)).fetchOne();
         return record;
     }
 
