@@ -51,7 +51,7 @@ public class GoalDao {
 
     public List<GoalRecord> getAllForUser(int userId) {
         List<GoalRecord> records = dsl.selectFrom(GOAL).where(GOAL.USERID.eq(userId)).orderBy(GOAL.WEEK).fetch();
-        if (!records.get(records.size() - 1).getWeek().equals(df.format(new Date()))) {
+        if (records.isEmpty() || !records.get(records.size() - 1).getWeek().equals(df.format(new Date()))) {
             records.add(getThisWeeksGoal(userId));
         }
         return records;
