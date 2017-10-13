@@ -38,7 +38,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = -1608222732;
+	private static final long serialVersionUID = -854796496;
 
 	/**
 	 * The reference instance of <code>public</code>
@@ -61,13 +61,13 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_1C4A0652_33DA_4404_98F4_2FCFFB842493,
-			Sequences.SYSTEM_SEQUENCE_44F52C86_B282_438F_907F_3CF9EC95FBC8,
-			Sequences.SYSTEM_SEQUENCE_539DC7CB_23FC_41CA_918A_D44DE79689B5,
-			Sequences.SYSTEM_SEQUENCE_834107A5_0353_4856_A799_A44BD110C617,
-			Sequences.SYSTEM_SEQUENCE_8A530BF9_8085_44DA_883A_1B9300C38238,
-			Sequences.SYSTEM_SEQUENCE_C3E0605D_52E6_4AFF_AEE6_421235A1D2F5,
-			Sequences.SYSTEM_SEQUENCE_F25FC286_858F_42DE_AC7D_368C8C6507AA);
+			Sequences.SYSTEM_SEQUENCE_2C3580FF_E656_42C4_9CD7_0413CDD4DE97,
+			Sequences.SYSTEM_SEQUENCE_33C3551A_F465_4A5E_88A4_2B615FD6EE07,
+			Sequences.SYSTEM_SEQUENCE_60F7ABBA_6B88_41F8_964F_357EC6AADCF8,
+			Sequences.SYSTEM_SEQUENCE_6F9EC8A1_FB23_44E8_B1C9_10704EACDF84,
+			Sequences.SYSTEM_SEQUENCE_9D2877EA_C022_42BF_835A_36C80636363C,
+			Sequences.SYSTEM_SEQUENCE_CA37E752_C997_4DFB_8A9D_5FF44FD0986D,
+			Sequences.SYSTEM_SEQUENCE_E0DC18D8_5F62_42A0_8E43_0921310802BB);
 	}
 
 	@Override

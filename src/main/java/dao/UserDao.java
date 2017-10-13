@@ -53,14 +53,26 @@ public class UserDao {
         return record.getId();
     }
 
-    public void update(int userId, String email, String displayName, String zip, int weeklyEatingGoal, int weeklyCookingGoal, String photo) {
+    public void update(int userId, String email, String displayName, String zip, Integer weeklyEatingGoal, Integer weeklyCookingGoal, String photo) {
         UserRecord record = get(userId);
-        record.setEmail(email);
-        record.setDisplayname(displayName);
-        record.setZip(zip);
-        record.setWeeklyeatinggoal(weeklyEatingGoal);
-        record.setWeeklycookinggoal(weeklyCookingGoal);
-        record.setPhoto(photo);
+        if (email != null) {
+            record.setEmail(email);
+        }
+        if (displayName != null) {
+            record.setDisplayname(displayName);
+        }
+        if (zip != null) {
+            record.setZip(zip);
+        }
+        if (weeklyEatingGoal != null) {
+            record.setWeeklyeatinggoal(weeklyEatingGoal);
+        }
+        if (weeklyCookingGoal != null) {
+            record.setWeeklycookinggoal(weeklyCookingGoal);
+        }
+        if (photo != null) {
+            record.setPhoto(photo);
+        }
         record.update();
     }
 

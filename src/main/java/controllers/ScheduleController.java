@@ -3,13 +3,11 @@ package controllers;
 import api.ScheduleRequest;
 import dao.RecipeDao;
 import dao.ScheduleDao;
+import dummy.Dummies;
 import generated.tables.records.RecipeRecord;
 import org.joda.time.DateTime;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/api/schedule")
@@ -38,5 +36,23 @@ public class ScheduleController {
 
         DateTime time = new DateTime(scheduleRequest.time);
         scheduleDao.insert(scheduleRequest.chefId, recipe.getId(), time, scheduleRequest.pickUp, scheduleRequest.sitDown);
+    }
+
+    @Path("/{id}/signup")
+    @PUT
+    public void signUp(@PathParam("id") Integer id) {
+        scheduleDao.schedule(id, Dummies.DUMMY_EATER);
+    }
+
+    @Path("/{id}/approve")
+    @POST
+    public void approve(@PathParam("id") Integer id, boolean approved) {
+        scheduleDao.approve(id, approved);
+    }
+
+    @Path("/{id}/verify")
+    @POST
+    public void verify(@PathParam("id") Integer id, boolean verified) {
+        scheduleDao.verify(id, verified);
     }
 }
