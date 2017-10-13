@@ -72,18 +72,18 @@ public class SimpleApplication extends Application<Configuration> {
 		Dummies.DUMMY_CHEF = userDao.insert("sb2483@cornell.edu", "Chef", "password", "10044", 0, 0, null, null);
 		Dummies.DUMMY_EATER = userDao.insert("rzl6@cornell.edu", "Eater", "password", "10044", 0, 0, null, null);
 
-//		ScheduleRequest scheduleRequest = new ScheduleRequest();
-//		scheduleRequest.name = "Chicken, rice, and green beans";
-//		scheduleRequest.price = new BigDecimal(10);
-//		scheduleRequest.description = "Sautéed chicken, delicious green beans and creamy mushroom soup";
-//		scheduleRequest.pickUp = true;
-//		scheduleRequest.sitDown = true;
-//		scheduleRequest.servings = 4;
-//		Calendar date = Calendar.getInstance();
-//		while (date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
-//			date.add(Calendar.DATE, 1);
-//		}
-//		scheduleRequest.time = date.getTimeInMillis();
-//		scheduleController.create(scheduleRequest);
+		ScheduleRequest scheduleRequest = new ScheduleRequest();
+		scheduleRequest.name = "Chicken, rice, and green beans";
+		scheduleRequest.price = new BigDecimal(10);
+		scheduleRequest.description = "Sautéed chicken, delicious green beans and creamy mushroom soup";
+		scheduleRequest.pickUp = true;
+		scheduleRequest.sitDown = true;
+		scheduleRequest.servings = 4;
+		Calendar date = Calendar.getInstance();
+		while (date.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY) {
+			date.add(Calendar.DATE, 1);
+		}
+		scheduleRequest.time = date.getTimeInMillis();
+		scheduleController.create(scheduleRequest);
 	}
 }

@@ -38,13 +38,15 @@ public class ScheduleController {
         this.scheduleDao = scheduleDao;
         this.recipeDao = recipeDao;
         this.userDao = userDao;
+        this.goalDao = goalDao;
     }
 
     @POST
     public void create(ScheduleRequest scheduleRequest) {
         RecipeRecord recipe = recipeDao.get(Dummies.DUMMY_EATER, scheduleRequest.name);
         if (recipe == null) {
-            recipe = recipeDao.insert(scheduleRequest.name, Dummies.DUMMY_CHEF, scheduleRequest.description, scheduleRequest.price, scheduleRequest.servings, scheduleRequest.photo, null);
+            int recipeId = recipeDao.insert(scheduleRequest.name, Dummies.DUMMY_CHEF, scheduleRequest.description, scheduleRequest.price, scheduleRequest.servings, scheduleRequest.photo, null);
+            recipe = recipeDao.get(recipeId);
         } else if (!(recipe.getPrice().equals(scheduleRequest.price) && recipe.getPhoto().equals(scheduleRequest.photo))) {
             recipe.setPrice(scheduleRequest.price);
             recipe.setPhoto(scheduleRequest.photo);
