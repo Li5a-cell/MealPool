@@ -55,7 +55,7 @@ public class SimpleApplication extends Application<Configuration> {
 		// Register all Controllers below.  Don't forget
 		// you need class and method @Path annotations!
 		env.jersey().register(new ReceiptImageController());
-		env.jersey().register(new ScheduleController(scheduleDao, recipeDao));
+		env.jersey().register(new ScheduleController(scheduleDao, recipeDao, userDao));
 		env.jersey().register(new UserController(userDao));
 
 		Dummies.DUMMY_CHEF = userDao.insert("sb2483@cornell.edu", "Chef", "password", "10044", 0, 0, null, null);

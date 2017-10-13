@@ -3,6 +3,7 @@ package controllers;
 import api.ScheduleRequest;
 import dao.RecipeDao;
 import dao.ScheduleDao;
+import dao.UserDao;
 import dummy.Dummies;
 import generated.tables.records.RecipeRecord;
 import org.joda.time.DateTime;
@@ -17,10 +18,12 @@ public class ScheduleController {
 
     private ScheduleDao scheduleDao;
     private RecipeDao recipeDao;
+    private UserDao userDao;
 
-    public ScheduleController(ScheduleDao scheduleDao, RecipeDao recipeDao) {
+    public ScheduleController(ScheduleDao scheduleDao, RecipeDao recipeDao, UserDao userDao) {
         this.scheduleDao = scheduleDao;
         this.recipeDao = recipeDao;
+        this.userDao = userDao;
     }
 
     @POST
