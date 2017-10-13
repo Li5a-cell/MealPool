@@ -16,7 +16,7 @@ class UserProfile extends Component {
         .then(function (response) {
             me.state = {
                 mealsToCook: [],
-                mealsToEat: response.data.eatingEvents[0].recipe
+                mealsToEat: [response.data.eatingEvents[0].recipe]
             }
         })
   }
@@ -38,7 +38,7 @@ class UserProfile extends Component {
       <div id="userProfile">
         <h1>{this.props.user.name}</h1>
         <div className="mealsList">
-          Meals to Pickup
+          Meals to Pickup:
           {
             this.state.mealsToEat.length > 0 ?
               this.state.mealsToEat.map(meal => meal.name) : null

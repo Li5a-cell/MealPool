@@ -31028,7 +31028,7 @@ var UserProfile = function (_Component) {
     _axios2.default.get('/api/user').then(function (response) {
       me.state = {
         mealsToCook: [],
-        mealsToEat: response.data.eatingEvents[0].recipe
+        mealsToEat: [response.data.eatingEvents[0].recipe]
       };
     });
     return _this;
@@ -31069,7 +31069,7 @@ var UserProfile = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'mealsList' },
-          'Meals to Pickup',
+          'Meals to Pickup:',
           this.state.mealsToEat.length > 0 ? this.state.mealsToEat.map(function (meal) {
             return meal.name;
           }) : null
