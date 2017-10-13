@@ -9,10 +9,7 @@ class Signup extends Component {
       zip: '',
       email: ''
     }
-  }
-  createUser(evt) {
-    evt.preventDefault()
-    //API post
+    this.handleFormEntry = this.handleFormEntry.bind(this)
   }
   handleFormEntry(evt) {
     evt.preventDefault()
@@ -55,7 +52,7 @@ class Signup extends Component {
             <input
               id="password"
               name="password"
-              type="text"
+              type="password"
               placeholder="Enter your password"
               value={this.state.password}
               onChange={this.handleFormEntry}
@@ -66,8 +63,9 @@ class Signup extends Component {
         <div id="signupBtns">
           <button
             id="signup"
-            onClick={this.createUser}
+            onClick={evt => this.props.login(evt, this.state)}
           >
+            Sign Up
           </button>
         </div>
       </div>

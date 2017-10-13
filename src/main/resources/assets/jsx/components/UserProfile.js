@@ -26,12 +26,12 @@ class UserProfile extends Component {
   render() {
     return (
       <div id="userProfile">
-
+        <h1>{this.props.user.name}</h1>
         <div className="mealsList">
           Meals to Pickup
           {
-            this.state.mealsToPickup.length > 0 ?
-              this.state.mealsToPickup.map(meal => meal.title) : null
+            this.state.mealsToEat.length > 0 ?
+              this.state.mealsToEat.map(meal => meal.title) : null
           }
         </div>
         <div className="mealsList">
@@ -40,14 +40,14 @@ class UserProfile extends Component {
             this.state.mealsToCook.length > 0 ?
               this.state.mealsToCook.map(meal => (
                 <div className="mealVerifyRow">
-                  Did {this.meal.user} pick up their healthy meal?
+                  Did {meal.user} pick up their healthy meal?
               <button
-                    onClick={this.verify(evt, this.meal.id)}
+                    onClick={this.verify(evt, meal.id)}
                   >
                     Yes
               </button>
                   <button
-                    onClick={this.fail(evt, this.meal.id)}
+                    onClick={this.fail(evt, meal.id)}
                   >
                     No
               </button>
