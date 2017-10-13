@@ -197,43 +197,43 @@ class ScheduleEat extends Component {
             name="10-15-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Sunday
+            S
           </button>
           <button
             name="10-16-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Monday
+            M
           </button>
           <button
             name="10-17-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Tuesday
+            T
           </button>
           <button
             name="10-18-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Wednesday
+            W
           </button>
           <button
             name="10-19-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Thursday
+            Th
           </button>
           <button
             name="10-20-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Friday
+            F
           </button>
           <button
             name="10-21-2017"
             onClick={this.selectDay}
             className="weekBtn">
-            Saturday
+            S
           </button>
         </div>
         <div id="meals">

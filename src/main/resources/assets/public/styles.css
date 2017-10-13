@@ -50,4 +50,20 @@ button {
   justify-content: space-around;
   align-items: center; }
 
+#weekView {
+  display: inline-flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center; }
+  #weekView button {
+    width: 10%;
+    background-color: mediumaquamarine;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    padding: 15px;
+    margin: 0.5em;
+    font-size: 0.8em; }
+
 /*# sourceMappingURL=styles.css.map*/
