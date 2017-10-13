@@ -1,7 +1,7 @@
 {
-  "name": "receipt-tracker",
+  "name": "mealpool",
   "version": "1.0.0",
-  "description": "A receipt tracker app built for CS5356",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emtseng/cs5356-f17.git"
+    "url": "git+https://github.com/sb2483/MealPool.git"
   },
-  "author": "@emtseng",
+  "author": "@emtseng, @sb2483, @mwhite494",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/emtseng/cs5356-f17/issues"
+    "url": "https://github.com/sb2483/MealPool/issues"
   },
-  "homepage": "https://github.com/emtseng/cs5356-f17#readme",
+  "homepage": "https://github.com/sb2483/MealPool#readme",
   "devDependencies": {
     "axios": "^0.16.2",
     "babel-core": "^6.26.0",
