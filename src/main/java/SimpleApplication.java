@@ -4,6 +4,7 @@ import dao.KeywordDao;
 import dao.RecipeDao;
 import dao.ScheduleDao;
 import dao.UserDao;
+import dummy.Dummies;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Bootstrap;
@@ -15,6 +16,7 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DefaultConfiguration;
 
 public class SimpleApplication extends Application<Configuration> {
+
 	public static void main(String[] args) throws Exception {
 		new SimpleApplication().run(args);
 	}
@@ -53,7 +55,10 @@ public class SimpleApplication extends Application<Configuration> {
 		// Register all Controllers below.  Don't forget
 		// you need class and method @Path annotations!
 		env.jersey().register(new ReceiptImageController());
-		env.jersey().register(new HelloWorldController());
-		env.jersey().register(new IndexController());
+		env.jersey().register(new ScheduleController(scheduleDao, recipeDao));
+		env.jersey().register(new UserController(userDao));
+
+		Dummies.DUMMY_CHEF = userDao.insert("sb2483@cornell.edu", "Chef", "password", "10044", 0, 0, null, null);
+		Dummies.DUMMY_EATER = userDao.insert("rzl6@cornell.edu", "Eater", "password", "10044", 0, 0, null, null);
 	}
 }

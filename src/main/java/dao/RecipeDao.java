@@ -33,22 +33,33 @@ public class RecipeDao {
      * @param keywords
      * @return
      */
-    public int insert(String name, int chefId, String description, BigDecimal price, int servings, String photo, Set<String> keywords) {
+    public RecipeRecord insert(String name, int chefId, String description, BigDecimal price, int servings, String photo, Set<String> keywords) {
         RecipeRecord record = dsl.insertInto(RECIPE, RECIPE.NAME, RECIPE.CHEFID, RECIPE.DESCRIPTION, RECIPE.PRICE, RECIPE.SERVINGS, RECIPE.PHOTO)
                 .values(name, chefId, description, price, servings, photo)
-                .returning(RECIPE.ID).fetchOne();
+                .returning().fetchOne();
 
-        for (String keyword : keywords) {
-            Integer keywordId = keywordDao.get(keyword);
-            if (keywordId == null) {
-                keywordId = keywordDao.insert(keyword);
+        if (keywords != null) {
+            for (String keyword : keywords) {
+                Integer keywordId = keywordDao.get(keyword);
+                if (keywordId == null) {
+                    keywordId = keywordDao.insert(keyword);
+                }
+                dsl.insertInto(RECIPE_KEYWORD, RECIPE_KEYWORD.RECIPEID, RECIPE_KEYWORD.KEYWORDID)
+                        .values(record.getId(), keywordId)
+                        .execute();
             }
-            dsl.insertInto(RECIPE_KEYWORD, RECIPE_KEYWORD.RECIPEID, RECIPE_KEYWORD.KEYWORDID)
-                .values(record.getId(), keywordId)
-                .execute();
         }
 
-        return record.getId();
+        return record;
+    }
+
+    public RecipeRecord get(String name) {
+        RecipeRecord record = dsl.selectFrom(RECIPE).where(RECIPE.NAME.eq(name)).fetchOne();
+        return record;
+    }
+
+    public void update(RecipeRecord recipeRecord) {
+        recipeRecord.update();
     }
 
     /**

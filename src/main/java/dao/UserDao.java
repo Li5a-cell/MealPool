@@ -38,16 +38,34 @@ public class UserDao {
                 .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo)
                 .returning(USER.ID).fetchOne();
 
-        for (String keyword : keywords) {
-            Integer keywordId = keywordDao.get(keyword);
-            if (keywordId == null) {
-                keywordId = keywordDao.insert(keyword);
+        if (keywords != null) {
+            for (String keyword : keywords) {
+                Integer keywordId = keywordDao.get(keyword);
+                if (keywordId == null) {
+                    keywordId = keywordDao.insert(keyword);
+                }
+                dsl.insertInto(USER_KEYWORD, USER_KEYWORD.USERID, USER_KEYWORD.KEYWORDID)
+                        .values(record.getId(), keywordId)
+                        .execute();
             }
-            dsl.insertInto(USER_KEYWORD, USER_KEYWORD.USERID, USER_KEYWORD.KEYWORDID)
-                    .values(record.getId(), keywordId)
-                    .execute();
         }
 
         return record.getId();
+    }
+
+    public void update(int userId, String email, String displayName, String zip, int weeklyEatingGoal, int weeklyCookingGoal, String photo) {
+        UserRecord record = get(userId);
+        record.setEmail(email);
+        record.setDisplayname(displayName);
+        record.setZip(zip);
+        record.setWeeklyeatinggoal(weeklyEatingGoal);
+        record.setWeeklycookinggoal(weeklyCookingGoal);
+        record.setPhoto(photo);
+        record.update();
+    }
+
+    public UserRecord get(int id) {
+        UserRecord record = dsl.selectFrom(USER).where(USER.ID.eq(id)).fetchOne();
+        return record;
     }
 }
