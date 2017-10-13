@@ -1,5 +1,7 @@
 package controllers;
 
+import api.ScheduleRequest;
+import api.UserScheduleRequest;
 import api.UserScheduleResource;
 import dao.GoalDao;
 import dao.UserDao;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Path("/api/user/schedule")
-@Consumes(MediaType.TEXT_PLAIN)
+@Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserScheduleController {
 
@@ -30,8 +32,8 @@ public class UserScheduleController {
     }
 
     @POST
-    public void signUp(Integer scheduleId) {
-        userScheduleDao.insert(scheduleId, Dummies.DUMMY_EATER);
+    public void signUp(UserScheduleRequest userScheduleRequest) {
+        userScheduleDao.insert(userScheduleRequest.scheduleId, Dummies.DUMMY_EATER);
     }
 
     @Path("/{id}/approve")
