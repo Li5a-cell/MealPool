@@ -12,13 +12,7 @@ class MealRow extends Component {
   requestMeal(evt) {
     evt.preventDefault()
     evt.stopPropagation()
-    console.log('hello')
-    console.log(this.props.meal.date)
-    axios.post('/api/schedule', {
-        name: this.props.meal.recipe.title,
-        description: this.props.meal.recipe.description,
-        photo: this.props.meal.date
-    })
+    axios.post('/api/user/schedule', {scheduleId: 1})
   }
   render() {
     const meal = this.props.meal.recipe

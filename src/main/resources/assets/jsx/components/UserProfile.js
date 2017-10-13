@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 class UserProfile extends Component {
+
   constructor() {
     super()
     this.state = {
@@ -10,9 +11,13 @@ class UserProfile extends Component {
     }
     this.verify = this.verify.bind(this)
     this.fail = this.fail.bind(this)
+    var me = this;
     axios.get('/api/user')
         .then(function (response) {
-            console.log(response);
+            me.state = {
+                mealsToCook: [],
+                mealsToEat: response.data.eatingEvents[0].recipe
+            }
         })
   }
   componentDidMount() {
@@ -36,7 +41,7 @@ class UserProfile extends Component {
           Meals to Pickup
           {
             this.state.mealsToEat.length > 0 ?
-              this.state.mealsToEat.map(meal => meal.title) : null
+              this.state.mealsToEat.map(meal => meal.name) : null
           }
         </div>
         <div className="mealsList">

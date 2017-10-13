@@ -49,24 +49,13 @@ const tueMeals = [
         pickUp: true,
         sitDown: false,
         chef: {
-            name: 'Emily'
-        },
-        recipe: {
-            title: 'Beef Stirfry',
-            description: 'Beef stir fry with assorted vegetables'
-        },
-        date: 'Tuesday (10-17-2017)'
-    }, {
-        pickUp: true,
-        sitDown: false,
-        chef: {
             name: 'Ryan'
         },
         recipe: {
-            title: 'Chicken Noodle Soup',
-            description: 'Made with chicken breast, carrots, and celery'
+            title: 'Roasted Chicken and Vegetables',
+            description: 'Organic chicken legs, baked with carrots and potatoes!'
         },
-        date: 'Tuesday (10-17-2017)'
+        date: 'Saturday (10-21-2017)'
     }
 ]
 
@@ -131,11 +120,11 @@ const satMeals = [
         pickUp: true,
         sitDown: false,
         chef: {
-            name: 'Ryan'
+            name: 'Chef'
         },
         recipe: {
-            title: 'Roasted Chicken and Vegetables',
-            description: 'Organic chicken legs, baked with carrots and potatoes!'
+            title: 'Chicken, rice, and green beans',
+            description: 'Sauteed chicken, delicious green beans and creamy mushroom soup'
         },
         date: 'Saturday (10-21-2017)'
     }
