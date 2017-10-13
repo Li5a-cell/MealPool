@@ -10,7 +10,10 @@ class UserProfile extends Component {
     }
     this.verify = this.verify.bind(this)
     this.fail = this.fail.bind(this)
-    //axios.get('/')
+    axios.get('/api/user')
+        .then(function (response) {
+            console.log(response);
+        })
   }
   componentDidMount() {
     //ajax request for user's meals to cook and to eat

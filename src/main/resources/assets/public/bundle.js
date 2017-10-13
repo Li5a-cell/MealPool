@@ -31041,7 +31041,9 @@ var UserProfile = function (_Component) {
     };
     _this.verify = _this.verify.bind(_this);
     _this.fail = _this.fail.bind(_this);
-    //axios.get('/')
+    _axios2.default.get('/api/user').then(function (response) {
+      console.log(response);
+    });
     return _this;
   }
 
@@ -31181,6 +31183,12 @@ var Signup = function (_Component) {
       return _react2.default.createElement(
         'div',
         { id: 'signup' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Welcome to MealTime'
+        ),
+        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'div',
           { id: 'signupForm' },
