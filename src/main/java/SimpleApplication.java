@@ -57,6 +57,7 @@ public class SimpleApplication extends Application<Configuration> {
 		env.jersey().register(new ReceiptImageController());
 		env.jersey().register(new ScheduleController(scheduleDao, recipeDao, userDao));
 		env.jersey().register(new UserController(userDao));
+		env.jersey().register(new IndexController());
 
 		Dummies.DUMMY_CHEF = userDao.insert("sb2483@cornell.edu", "Chef", "password", "10044", 0, 0, null, null);
 		Dummies.DUMMY_EATER = userDao.insert("rzl6@cornell.edu", "Eater", "password", "10044", 0, 0, null, null);
