@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class MealRow extends Component {
   constructor() {
@@ -11,7 +12,13 @@ class MealRow extends Component {
   requestMeal(evt) {
     evt.preventDefault()
     evt.stopPropagation()
-    //ajax request
+    console.log('hello')
+    console.log(this.props.meal.date)
+    axios.post('/api/schedule', {
+        name: this.props.meal.recipe.title,
+        description: this.props.meal.recipe.description,
+        photo: this.props.meal.date
+    })
   }
   render() {
     const meal = this.props.meal.recipe

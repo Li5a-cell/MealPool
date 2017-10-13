@@ -25,17 +25,19 @@ public class GoalDao {
         this.userDao = userDao;
     }
 
-    public GoalRecord insert(int userId) {
+    public int insert(int userId) {
         UserRecord user = userDao.get(userId);
         GoalRecord goal = dsl.insertInto(GOAL, GOAL.USERID, GOAL.EATINGGOAL, GOAL.COOKINGGOAL, GOAL.WEEK)
-                .values(userId, user.getWeeklyeatinggoal(), user.getWeeklycookinggoal(), df.format(new Date())).returning().fetchOne();
-        return goal;
+                .values(userId, user.getWeeklyeatinggoal(), user.getWeeklycookinggoal(), df.format(new Date())).returning(GOAL.ID).fetchOne();
+        return goal.getId();
     }
 
     public GoalRecord getThisWeeksGoal(int userId) {
         GoalRecord record = dsl.selectFrom(GOAL).where(GOAL.USERID.eq(userId)).and(GOAL.WEEK.eq(df.format(new Date()))).fetchOne();
         if (record == null) {
-            record = insert(userId);
+            //If the goal hasn't been created yet, create it and then retrieve it again
+            insert(userId);
+            record = dsl.selectFrom(GOAL).where(GOAL.USERID.eq(userId)).and(GOAL.WEEK.eq(df.format(new Date()))).fetchOne();
         }
         return record;
     }

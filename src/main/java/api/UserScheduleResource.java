@@ -10,10 +10,10 @@ public class UserScheduleResource {
     UserResource eater;
 
     @JsonProperty
-    boolean approved;
+    Boolean approved;
 
     @JsonProperty
-    boolean verified;
+    Boolean verified;
 
     public UserScheduleResource(UserRecord eater, UserScheduleRecord userSchedule) {
         this.eater = new UserResource(eater);

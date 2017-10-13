@@ -25,7 +25,7 @@ class ScheduleCook extends Component {
   submitRecipe(evt) {
     evt.preventDefault()
       evt.stopPropagation()
-      console.log(this.refs.recipe.value)
+      //console.log(this.refs.recipe.value)
       //const body = {}
       //axios.post('/api/schedule', )
   }

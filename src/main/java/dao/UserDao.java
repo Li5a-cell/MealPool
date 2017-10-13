@@ -33,8 +33,8 @@ public class UserDao {
      * @return
      */
     public int insert(String email, String displayName, String password, String zip, int weeklyEatingGoal, int weeklyCookingGoal, String photo, List<String> keywords) {
-        UserRecord record = dsl.insertInto(USER, USER.EMAIL, USER.DISPLAYNAME, USER.PASSWORD, USER.ZIP, USER.WEEKLYEATINGGOAL, USER.WEEKLYCOOKINGGOAL, USER.PHOTO)
-                .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo)
+        UserRecord record = dsl.insertInto(USER, USER.EMAIL, USER.DISPLAYNAME, USER.PASSWORD, USER.ZIP, USER.WEEKLYEATINGGOAL, USER.WEEKLYCOOKINGGOAL, USER.PHOTO, USER.FAVORITECOUNT)
+                .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo, 0)
                 .returning(USER.ID).fetchOne();
 
         if (keywords != null) {
@@ -54,22 +54,22 @@ public class UserDao {
 
     public void update(int userId, String email, String displayName, String zip, Integer weeklyEatingGoal, Integer weeklyCookingGoal, String photo) {
         UserRecord record = get(userId);
-        if (email != null) {
+        if (email != null && !email.equals(record.getEmail())) {
             record.setEmail(email);
         }
-        if (displayName != null) {
+        if (displayName != null && !displayName.equals(record.getDisplayname())) {
             record.setDisplayname(displayName);
         }
-        if (zip != null) {
+        if (zip != null && !zip.equals(record.getZip())) {
             record.setZip(zip);
         }
-        if (weeklyEatingGoal != null) {
+        if (weeklyEatingGoal != null && !weeklyEatingGoal.equals(record.getWeeklyeatinggoal())) {
             record.setWeeklyeatinggoal(weeklyEatingGoal);
         }
-        if (weeklyCookingGoal != null) {
+        if (weeklyCookingGoal != null && !weeklyCookingGoal.equals(record.getWeeklycookinggoal())) {
             record.setWeeklycookinggoal(weeklyCookingGoal);
         }
-        if (photo != null) {
+        if (photo != null && !photo.equals(record.getPhoto())) {
             record.setPhoto(photo);
         }
         record.update();

@@ -13,7 +13,8 @@ const sunMeals = [
     recipe: {
       title: 'Apple Pie',
       description: 'Scrumptious, made with fresh apples'
-    }
+    },
+    date: 'Sunday (10-15-2017)'
   }, {
     pickUp: true,
     sitDown: false,
@@ -23,7 +24,8 @@ const sunMeals = [
     recipe: {
       title: 'Chicken Salad',
       description: 'Beautiful organic chicken salad with homemade dressing'
-    }
+    },
+    date: 'Sunday (10-15-2017)'
   }
 ]
 
@@ -37,7 +39,8 @@ const monMeals = [
         recipe: {
             title: 'Fish Tacos',
             description: 'Made with fresh cod, pico, and red onion'
-        }
+        },
+        date: 'Monday (10-16-2017)'
     }
 ]
 
@@ -51,7 +54,8 @@ const tueMeals = [
         recipe: {
             title: 'Beef Stirfry',
             description: 'Beef stir fry with assorted vegetables'
-        }
+        },
+        date: 'Tuesday (10-17-2017)'
     }, {
         pickUp: true,
         sitDown: false,
@@ -61,7 +65,8 @@ const tueMeals = [
         recipe: {
             title: 'Chicken Noodle Soup',
             description: 'Made with chicken breast, carrots, and celery'
-        }
+        },
+        date: 'Tuesday (10-17-2017)'
     }
 ]
 
@@ -75,7 +80,8 @@ const wedMeals = [
         recipe: {
             title: 'Beef Stirfry',
             description: 'Beef stir fry with assorted vegetables'
-        }
+        },
+        date: 'Wednesday (10-18-2017)'
     }, {
         pickUp: true,
         sitDown: false,
@@ -85,7 +91,8 @@ const wedMeals = [
         recipe: {
             title: 'Chicken Noodle Soup',
             description: 'Made with chicken breast, carrots, and celery'
-        }
+        },
+        date: 'Wednesday (10-18-2017)'
     }
 ]
 
@@ -99,7 +106,8 @@ const thuMeals = [
         recipe: {
             title: 'Chili',
             description: 'Spicy chili with ground beef, beans, and peppers'
-        }
+        },
+        date: 'Thursday (10-19-2017)'
     }
 ]
 
@@ -113,7 +121,8 @@ const friMeals = [
         recipe: {
             title: 'Cherry Pie',
             description: 'Scrumptious, made with fresh cherries'
-        }
+        },
+        date: 'Friday (10-20-2017)'
     }
 ]
 
@@ -127,7 +136,8 @@ const satMeals = [
         recipe: {
             title: 'Roasted Chicken and Vegetables',
             description: 'Organic chicken legs, baked with carrots and potatoes!'
-        }
+        },
+        date: 'Saturday (10-21-2017)'
     }
 ]
 

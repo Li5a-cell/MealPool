@@ -1,7 +1,6 @@
 package dao;
 
 import generated.tables.records.ScheduleRecord;
-import generated.tables.records.UserScheduleRecord;
 import org.joda.time.DateTime;
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
@@ -57,21 +56,6 @@ public class ScheduleDao {
                 .join(USER).on(RECIPE.CHEFID.eq(USER.ID))
                 .where(RECIPE.CHEFID.ne(userId)).and(USER.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
                 .fetch().into(SCHEDULE);
-        return records;
-    }
-
-    /**
-     * get all users currently scheduled for a particular recipe
-     * Used by: chef
-     * @param scheduleId
-     * @return
-     */
-    public List<UserScheduleRecord> getScheduledUsers(int scheduleId) {
-        List<UserScheduleRecord> records = dsl.select()
-                .from(USER_SCHEDULE)
-                .join(SCHEDULE).on(USER_SCHEDULE.SCHEDULEID.eq(SCHEDULE.ID))
-                .where(USER_SCHEDULE.SCHEDULEID.eq(scheduleId))
-                .fetch().into(USER_SCHEDULE);
         return records;
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 class UserProfile extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class UserProfile extends Component {
     }
     this.verify = this.verify.bind(this)
     this.fail = this.fail.bind(this)
+    //axios.get('/')
   }
   componentDidMount() {
     //ajax request for user's meals to cook and to eat

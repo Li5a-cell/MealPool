@@ -6,7 +6,7 @@ import generated.tables.records.UserRecord;
 public class UserResource {
 
     @JsonProperty
-    public int id;
+    public Integer id;
 
     @JsonProperty
     public String email;
@@ -18,16 +18,16 @@ public class UserResource {
     public String zip;
 
     @JsonProperty
-    public int favoriteCount;
+    public Integer favoriteCount;
 
     @JsonProperty
     public String photo;
 
     @JsonProperty
-    public int weeklyEatingGoal;
+    public Integer weeklyEatingGoal;
 
     @JsonProperty
-    public int weeklyCookingGoal;
+    public Integer weeklyCookingGoal;
 
     public UserResource(UserRecord userRecord) {
         this.id = userRecord.getId();
