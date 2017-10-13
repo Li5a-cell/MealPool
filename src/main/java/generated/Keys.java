@@ -69,7 +69,7 @@ public class Keys {
 	public static final UniqueKey<KeywordRecord> CONSTRAINT_F = UniqueKeys0.CONSTRAINT_F;
 	public static final UniqueKey<RecipeRecord> CONSTRAINT_8F = UniqueKeys0.CONSTRAINT_8F;
 	public static final UniqueKey<CommentRecord> CONSTRAINT_63 = UniqueKeys0.CONSTRAINT_63;
-	public static final UniqueKey<ScheduleRecord> CONSTRAINT_50C = UniqueKeys0.CONSTRAINT_50C;
+	public static final UniqueKey<ScheduleRecord> CONSTRAINT_50 = UniqueKeys0.CONSTRAINT_50;
 	public static final UniqueKey<UserScheduleRecord> CONSTRAINT_1B = UniqueKeys0.CONSTRAINT_1B;
 
 	// -------------------------------------------------------------------------
@@ -79,8 +79,7 @@ public class Keys {
 	public static final ForeignKey<GoalRecord, UserRecord> CONSTRAINT_21 = ForeignKeys0.CONSTRAINT_21;
 	public static final ForeignKey<RecipeRecord, UserRecord> CONSTRAINT_8 = ForeignKeys0.CONSTRAINT_8;
 	public static final ForeignKey<CommentRecord, RecipeRecord> CONSTRAINT_6 = ForeignKeys0.CONSTRAINT_6;
-	public static final ForeignKey<ScheduleRecord, UserRecord> CONSTRAINT_5 = ForeignKeys0.CONSTRAINT_5;
-	public static final ForeignKey<ScheduleRecord, RecipeRecord> CONSTRAINT_50 = ForeignKeys0.CONSTRAINT_50;
+	public static final ForeignKey<ScheduleRecord, RecipeRecord> CONSTRAINT_5 = ForeignKeys0.CONSTRAINT_5;
 	public static final ForeignKey<UserScheduleRecord, ScheduleRecord> CONSTRAINT_1 = ForeignKeys0.CONSTRAINT_1;
 	public static final ForeignKey<UserKeywordRecord, UserRecord> CONSTRAINT_B = ForeignKeys0.CONSTRAINT_B;
 	public static final ForeignKey<UserKeywordRecord, KeywordRecord> CONSTRAINT_B0 = ForeignKeys0.CONSTRAINT_B0;
@@ -110,7 +109,7 @@ public class Keys {
 		public static final UniqueKey<KeywordRecord> CONSTRAINT_F = createUniqueKey(Keyword.KEYWORD, Keyword.KEYWORD.NAME);
 		public static final UniqueKey<RecipeRecord> CONSTRAINT_8F = createUniqueKey(Recipe.RECIPE, Recipe.RECIPE.ID);
 		public static final UniqueKey<CommentRecord> CONSTRAINT_63 = createUniqueKey(Comment.COMMENT, Comment.COMMENT.ID);
-		public static final UniqueKey<ScheduleRecord> CONSTRAINT_50C = createUniqueKey(Schedule.SCHEDULE, Schedule.SCHEDULE.ID);
+		public static final UniqueKey<ScheduleRecord> CONSTRAINT_50 = createUniqueKey(Schedule.SCHEDULE, Schedule.SCHEDULE.ID);
 		public static final UniqueKey<UserScheduleRecord> CONSTRAINT_1B = createUniqueKey(UserSchedule.USER_SCHEDULE, UserSchedule.USER_SCHEDULE.ID);
 	}
 
@@ -118,9 +117,8 @@ public class Keys {
 		public static final ForeignKey<GoalRecord, UserRecord> CONSTRAINT_21 = createForeignKey(generated.Keys.CONSTRAINT_27E, Goal.GOAL, Goal.GOAL.USERID);
 		public static final ForeignKey<RecipeRecord, UserRecord> CONSTRAINT_8 = createForeignKey(generated.Keys.CONSTRAINT_27E, Recipe.RECIPE, Recipe.RECIPE.CHEFID);
 		public static final ForeignKey<CommentRecord, RecipeRecord> CONSTRAINT_6 = createForeignKey(generated.Keys.CONSTRAINT_8F, Comment.COMMENT, Comment.COMMENT.RECIPEID);
-		public static final ForeignKey<ScheduleRecord, UserRecord> CONSTRAINT_5 = createForeignKey(generated.Keys.CONSTRAINT_27E, Schedule.SCHEDULE, Schedule.SCHEDULE.CHEFID);
-		public static final ForeignKey<ScheduleRecord, RecipeRecord> CONSTRAINT_50 = createForeignKey(generated.Keys.CONSTRAINT_8F, Schedule.SCHEDULE, Schedule.SCHEDULE.RECIPEID);
-		public static final ForeignKey<UserScheduleRecord, ScheduleRecord> CONSTRAINT_1 = createForeignKey(generated.Keys.CONSTRAINT_50C, UserSchedule.USER_SCHEDULE, UserSchedule.USER_SCHEDULE.SCHEDULEID);
+		public static final ForeignKey<ScheduleRecord, RecipeRecord> CONSTRAINT_5 = createForeignKey(generated.Keys.CONSTRAINT_8F, Schedule.SCHEDULE, Schedule.SCHEDULE.RECIPEID);
+		public static final ForeignKey<UserScheduleRecord, ScheduleRecord> CONSTRAINT_1 = createForeignKey(generated.Keys.CONSTRAINT_50, UserSchedule.USER_SCHEDULE, UserSchedule.USER_SCHEDULE.SCHEDULEID);
 		public static final ForeignKey<UserKeywordRecord, UserRecord> CONSTRAINT_B = createForeignKey(generated.Keys.CONSTRAINT_27E, UserKeyword.USER_KEYWORD, UserKeyword.USER_KEYWORD.USERID);
 		public static final ForeignKey<UserKeywordRecord, KeywordRecord> CONSTRAINT_B0 = createForeignKey(generated.Keys.CONSTRAINT_FA, UserKeyword.USER_KEYWORD, UserKeyword.USER_KEYWORD.KEYWORDID);
 		public static final ForeignKey<RecipeKeywordRecord, RecipeRecord> CONSTRAINT_E = createForeignKey(generated.Keys.CONSTRAINT_8F, RecipeKeyword.RECIPE_KEYWORD, RecipeKeyword.RECIPE_KEYWORD.RECIPEID);

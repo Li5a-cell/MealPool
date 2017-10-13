@@ -8,9 +8,6 @@ import java.math.BigDecimal;
 public class ScheduleRequest {
 
     @NotEmpty
-    public int chefId;
-
-    @NotEmpty
     public String name;
 
     @NotNull
@@ -18,6 +15,10 @@ public class ScheduleRequest {
 
     @NotNull
     public BigDecimal price;
+
+    public String description;
+
+    public int servings;
 
     public boolean pickUp;
 
