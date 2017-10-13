@@ -54,7 +54,7 @@ public class SimpleApplication extends Application<Configuration> {
 		GoalDao goalDao = new GoalDao(jooqConfig, userDao);
 
 		ScheduleController scheduleController = new ScheduleController(scheduleDao, recipeDao, userDao, goalDao);
-		UserController userController = new UserController(userDao, goalDao);
+		UserController userController = new UserController(userDao, goalDao, recipeDao, scheduleDao);
 		IndexController indexController = new IndexController();
 		UserScheduleController userScheduleController = new UserScheduleController(userScheduleDao, goalDao, userDao);
 
