@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import MealRow from './MealRow.js'
 
@@ -26,7 +27,6 @@ const fakeMeals = [
   }
 ]
 
-
 class ScheduleEat extends Component {
   constructor() {
     super()
@@ -38,54 +38,68 @@ class ScheduleEat extends Component {
   selectDay(evt) {
     evt.preventDefault()
     evt.stopPropagation()
-    //ajax request for that day's meals
+    //hard-coded for dates this week
+    axios.get('/api/schedule', evt.target.name) //date format: "MM-DD-YYYY"
+      .then(res => res.data)
+      .then(data => {
+        this.setState({
+          meals: data
+        })
+      })
   }
   render() {
     return (
       <div id="scheduleEat">
         <div id="weekView">
-          <div
+          <button
+            name="10-15-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Sunday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-16-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Monday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-17-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Tuesday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-18-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Wednesday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-19-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Thursday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-20-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Friday
-          </div>
-          <div
+          </button>
+          <button
+            name="10-21-2017"
             onClick={this.selectDay}
             className="weekBtn">
             Saturday
-          </div>
+          </button>
         </div>
         <div id="meals">
-        {
-          this.state.meals.length > 0 ?
-          this.state.meals.map(meal => <MealRow meal={meal} />) :
-          null
-        }
+          {
+            this.state.meals.length > 0 ?
+              this.state.meals.map(meal => <MealRow meal={meal} />) :
+              null
+          }
         </div>
       </div>
     )

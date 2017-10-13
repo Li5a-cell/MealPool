@@ -24,6 +24,7 @@ class MealRow extends Component {
           <button
             onClick={this.requestMeal}
           >
+            REQUEST MEAL
           </button>
         </div>
       </div>

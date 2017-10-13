@@ -25,41 +25,41 @@ class ScheduleCook extends Component {
     return (
       <div id="ScheduleCook">
         <div id="weekView">
-          <div
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Sunday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Monday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Tuesday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Wednesday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Thursday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Friday
-          </div>
-          <div
+          </button>
+          <button
             onClick={this.selectDay}
             className="weekBtn">
             Saturday
-          </div>
+          </button>
         </div>
         <div id="meals">
         {
