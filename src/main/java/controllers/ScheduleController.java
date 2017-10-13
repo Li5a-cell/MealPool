@@ -2,7 +2,6 @@ package controllers;
 
 import api.ScheduleRequest;
 import api.ScheduleResource;
-import api.UserScheduleResource;
 import dao.GoalDao;
 import dao.RecipeDao;
 import dao.ScheduleDao;
@@ -11,7 +10,6 @@ import dummy.Dummies;
 import generated.tables.records.RecipeRecord;
 import generated.tables.records.ScheduleRecord;
 import generated.tables.records.UserRecord;
-import generated.tables.records.UserScheduleRecord;
 import org.joda.time.DateTime;
 
 import javax.ws.rs.*;
@@ -58,11 +56,12 @@ public class ScheduleController {
         goalDao.incrementCookingGoal(Dummies.DUMMY_CHEF);
     }
 
+    @Path("/{time}")
     @GET
-    public List<ScheduleResource> find(String time) {
+    public List<ScheduleResource> find(@PathParam("time") String time) {
         UserRecord user = userDao.get(Dummies.DUMMY_EATER);
 
-        List<ScheduleRecord> scheduleRecords = null;
+        List<ScheduleRecord> scheduleRecords;
         try {
             scheduleRecords = scheduleDao.find(user.getId(), user.getZip(), new DateTime(df.parse(time)));
         } catch (ParseException e) {
@@ -76,18 +75,5 @@ public class ScheduleController {
             scheduleResources.add(new ScheduleResource(chef, recipe, scheduleRecord));
         }
         return scheduleResources;
-    }
-
-    @GET
-    @Path("/{id}")
-    public List<UserScheduleResource> getUsers(@PathParam("id") Integer id) {
-        List<UserScheduleRecord> records = scheduleDao.getScheduledUsers(id);
-
-        List<UserScheduleResource> userScheduleResources = new ArrayList<>(records.size());
-        for (UserScheduleRecord record : records) {
-            UserRecord eater = userDao.get(record.getUserid());
-            userScheduleResources.add(new UserScheduleResource(eater, record));
-        }
-        return userScheduleResources;
     }
 }

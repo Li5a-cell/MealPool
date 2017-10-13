@@ -56,7 +56,7 @@ public class SimpleApplication extends Application<Configuration> {
 		ScheduleController scheduleController = new ScheduleController(scheduleDao, recipeDao, userDao, goalDao);
 		UserController userController = new UserController(userDao, goalDao);
 		IndexController indexController = new IndexController();
-		UserScheduleController userScheduleController = new UserScheduleController(userScheduleDao, goalDao);
+		UserScheduleController userScheduleController = new UserScheduleController(userScheduleDao, goalDao, userDao);
 
 		// Register all Controllers below.  Don't forget
 		// you need class and method @Path annotations!

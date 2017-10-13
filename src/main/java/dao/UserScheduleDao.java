@@ -5,6 +5,8 @@ import org.jooq.Configuration;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 
+import java.util.List;
+
 import static generated.Tables.*;
 
 public class UserScheduleDao {
@@ -63,5 +65,20 @@ public class UserScheduleDao {
         record.setVerified(verified);
         record.update();
         return record;
+    }
+
+    /**
+     * get all users currently scheduled for a particular recipe
+     * Used by: chef
+     * @param scheduleId
+     * @return
+     */
+    public List<UserScheduleRecord> getScheduledUsers(int scheduleId) {
+        List<UserScheduleRecord> records = dsl.select()
+                .from(USER_SCHEDULE)
+                .join(SCHEDULE).on(USER_SCHEDULE.SCHEDULEID.eq(SCHEDULE.ID))
+                .where(USER_SCHEDULE.SCHEDULEID.eq(scheduleId))
+                .fetch().into(USER_SCHEDULE);
+        return records;
     }
 }

@@ -33,8 +33,8 @@ public class UserDao {
      * @return
      */
     public int insert(String email, String displayName, String password, String zip, int weeklyEatingGoal, int weeklyCookingGoal, String photo, List<String> keywords) {
-        UserRecord record = dsl.insertInto(USER, USER.EMAIL, USER.DISPLAYNAME, USER.PASSWORD, USER.ZIP, USER.WEEKLYEATINGGOAL, USER.WEEKLYCOOKINGGOAL, USER.PHOTO)
-                .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo)
+        UserRecord record = dsl.insertInto(USER, USER.EMAIL, USER.DISPLAYNAME, USER.PASSWORD, USER.ZIP, USER.WEEKLYEATINGGOAL, USER.WEEKLYCOOKINGGOAL, USER.PHOTO, USER.FAVORITECOUNT)
+                .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo, 0)
                 .returning(USER.ID).fetchOne();
 
         if (keywords != null) {
