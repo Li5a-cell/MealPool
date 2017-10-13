@@ -4,13 +4,13 @@
 package generated;
 
 
-import generated.tables.Account;
 import generated.tables.Comment;
 import generated.tables.Goal;
 import generated.tables.Keyword;
 import generated.tables.Recipe;
 import generated.tables.RecipeKeyword;
 import generated.tables.Schedule;
+import generated.tables.User;
 import generated.tables.UserKeyword;
 import generated.tables.UserSchedule;
 
@@ -31,9 +31,9 @@ import javax.annotation.Generated;
 public class Tables {
 
 	/**
-	 * The table public.account
+	 * The table public.user
 	 */
-	public static final Account ACCOUNT = generated.tables.Account.ACCOUNT;
+	public static final User USER = generated.tables.User.USER;
 
 	/**
 	 * The table public.goal

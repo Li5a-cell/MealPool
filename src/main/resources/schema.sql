@@ -1,4 +1,4 @@
-CREATE TABLE account (
+CREATE TABLE user (
   id INT UNSIGNED AUTO_INCREMENT,
   password varchar(255) NOT NULL,
   email VARCHAR(255) UNIQUE NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE goal (
   eatingCount INT UNSIGNED DEFAULT 0,
   cookingGoal INT UNSIGNED DEFAULT 0,
   cookingCount INT UNSIGNED DEFAULT 0,
-  FOREIGN KEY (userId) REFERENCES account(id),
+  FOREIGN KEY (userId) REFERENCES user(id),
   PRIMARY KEY (id)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE recipe (
   purchasedCount INT UNSIGNED DEFAULT 0,
   price DECIMAL(12,2) DEFAULT 0,
   photo VARCHAR(255),
-  FOREIGN KEY (chefId) REFERENCES account(id),
+  FOREIGN KEY (chefId) REFERENCES user(id),
   PRIMARY KEY (id)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE user_schedule (
 CREATE TABLE user_keyword (
   userId INT UNSIGNED NOT NULL,
   keywordId INT UNSIGNED NOT NULL,
-  FOREIGN KEY (userId) REFERENCES account(id),
+  FOREIGN KEY (userId) REFERENCES user(id),
   FOREIGN KEY (keywordId) REFERENCES keyword(id)
 );
 

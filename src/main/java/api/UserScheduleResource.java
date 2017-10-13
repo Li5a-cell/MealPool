@@ -1,7 +1,7 @@
 package api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import generated.tables.records.AccountRecord;
+import generated.tables.records.UserRecord;
 import generated.tables.records.UserScheduleRecord;
 
 public class UserScheduleResource {
@@ -15,7 +15,7 @@ public class UserScheduleResource {
     @JsonProperty
     boolean verified;
 
-    public UserScheduleResource(AccountRecord eater, UserScheduleRecord userSchedule) {
+    public UserScheduleResource(UserRecord eater, UserScheduleRecord userSchedule) {
         this.eater = new UserResource(eater);
         this.approved = userSchedule.getApproved();
         this.verified = userSchedule.getVerified();

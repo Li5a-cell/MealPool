@@ -1,6 +1,6 @@
 package dao;
 
-import generated.tables.records.AccountRecord;
+import generated.tables.records.UserRecord;
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -20,7 +20,7 @@ public class UserDao {
     }
 
     /**
-     * Create a user account
+     * Create a user USER
      * Used by: chefs and eaters
      * @param email
      * @param displayName
@@ -33,9 +33,9 @@ public class UserDao {
      * @return
      */
     public int insert(String email, String displayName, String password, String zip, int weeklyEatingGoal, int weeklyCookingGoal, String photo, List<String> keywords) {
-        AccountRecord record = dsl.insertInto(ACCOUNT, ACCOUNT.EMAIL, ACCOUNT.DISPLAYNAME, ACCOUNT.PASSWORD, ACCOUNT.ZIP, ACCOUNT.WEEKLYEATINGGOAL, ACCOUNT.WEEKLYCOOKINGGOAL, ACCOUNT.PHOTO)
+        UserRecord record = dsl.insertInto(USER, USER.EMAIL, USER.DISPLAYNAME, USER.PASSWORD, USER.ZIP, USER.WEEKLYEATINGGOAL, USER.WEEKLYCOOKINGGOAL, USER.PHOTO)
                 .values(email, displayName, password, zip, weeklyEatingGoal, weeklyCookingGoal, photo)
-                .returning(ACCOUNT.ID).fetchOne();
+                .returning(USER.ID).fetchOne();
 
         if (keywords != null) {
             for (String keyword : keywords) {
@@ -53,7 +53,7 @@ public class UserDao {
     }
 
     public void update(int userId, String email, String displayName, String zip, Integer weeklyEatingGoal, Integer weeklyCookingGoal, String photo) {
-        AccountRecord record = get(userId);
+        UserRecord record = get(userId);
         if (email != null) {
             record.setEmail(email);
         }
@@ -75,8 +75,8 @@ public class UserDao {
         record.update();
     }
 
-    public AccountRecord get(int id) {
-        AccountRecord record = dsl.selectFrom(ACCOUNT).where(ACCOUNT.ID.eq(id)).fetchOne();
+    public UserRecord get(int id) {
+        UserRecord record = dsl.selectFrom(USER).where(USER.ID.eq(id)).fetchOne();
         return record;
     }
 }

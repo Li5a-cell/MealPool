@@ -35,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Goal extends TableImpl<GoalRecord> {
 
-	private static final long serialVersionUID = 2016908297;
+	private static final long serialVersionUID = -154387150;
 
 	/**
 	 * The reference instance of <code>public.goal</code>
@@ -120,7 +120,7 @@ public class Goal extends TableImpl<GoalRecord> {
 	 */
 	@Override
 	public UniqueKey<GoalRecord> getPrimaryKey() {
-		return Keys.CONSTRAINT_21;
+		return Keys.CONSTRAINT_217;
 	}
 
 	/**
@@ -128,7 +128,7 @@ public class Goal extends TableImpl<GoalRecord> {
 	 */
 	@Override
 	public List<UniqueKey<GoalRecord>> getKeys() {
-		return Arrays.<UniqueKey<GoalRecord>>asList(Keys.CONSTRAINT_21);
+		return Arrays.<UniqueKey<GoalRecord>>asList(Keys.CONSTRAINT_217);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class Goal extends TableImpl<GoalRecord> {
 	 */
 	@Override
 	public List<ForeignKey<GoalRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<GoalRecord, ?>>asList(Keys.CONSTRAINT_2);
+		return Arrays.<ForeignKey<GoalRecord, ?>>asList(Keys.CONSTRAINT_21);
 	}
 
 	/**

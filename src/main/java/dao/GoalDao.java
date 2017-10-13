@@ -1,6 +1,6 @@
 package dao;
 
-import generated.tables.records.AccountRecord;
+import generated.tables.records.UserRecord;
 import generated.tables.records.GoalRecord;
 import org.jooq.Configuration;
 import org.jooq.DSLContext;
@@ -26,7 +26,7 @@ public class GoalDao {
     }
 
     public GoalRecord insert(int userId) {
-        AccountRecord user = userDao.get(userId);
+        UserRecord user = userDao.get(userId);
         GoalRecord goal = dsl.insertInto(GOAL, GOAL.USERID, GOAL.EATINGGOAL, GOAL.COOKINGGOAL, GOAL.WEEK)
                 .values(userId, user.getWeeklyeatinggoal(), user.getWeeklycookinggoal(), df.format(new Date())).returning().fetchOne();
         return goal;

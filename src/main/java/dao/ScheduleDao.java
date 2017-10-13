@@ -54,8 +54,8 @@ public class ScheduleDao {
         List<ScheduleRecord> records = dsl.select()
                 .from(SCHEDULE)
                 .join(RECIPE).on(SCHEDULE.RECIPEID.eq(RECIPE.ID))
-                .join(ACCOUNT).on(RECIPE.CHEFID.eq(ACCOUNT.ID))
-                .where(RECIPE.CHEFID.ne(userId)).and(ACCOUNT.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
+                .join(USER).on(RECIPE.CHEFID.eq(USER.ID))
+                .where(RECIPE.CHEFID.ne(userId)).and(USER.ZIP.eq(zip)).and(SCHEDULE.SCHEDULED.between(sStartOfDay, sEndOfDay))
                 .fetch().into(SCHEDULE);
         return records;
     }

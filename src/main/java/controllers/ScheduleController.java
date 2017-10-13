@@ -10,7 +10,7 @@ import dao.UserDao;
 import dummy.Dummies;
 import generated.tables.records.RecipeRecord;
 import generated.tables.records.ScheduleRecord;
-import generated.tables.records.AccountRecord;
+import generated.tables.records.UserRecord;
 import generated.tables.records.UserScheduleRecord;
 import org.joda.time.DateTime;
 
@@ -58,7 +58,7 @@ public class ScheduleController {
 
     @GET
     public List<ScheduleResource> find(String time) {
-        AccountRecord user = userDao.get(Dummies.DUMMY_EATER);
+        UserRecord user = userDao.get(Dummies.DUMMY_EATER);
 
         List<ScheduleRecord> scheduleRecords = null;
         try {
@@ -70,7 +70,7 @@ public class ScheduleController {
         List<ScheduleResource> scheduleResources = new ArrayList<>(scheduleRecords.size());
         for (ScheduleRecord scheduleRecord : scheduleRecords) {
             RecipeRecord recipe = recipeDao.get(scheduleRecord.getRecipeid());
-            AccountRecord chef = userDao.get(recipe.getChefid());
+            UserRecord chef = userDao.get(recipe.getChefid());
             scheduleResources.add(new ScheduleResource(chef, recipe, scheduleRecord));
         }
         return scheduleResources;
@@ -83,7 +83,7 @@ public class ScheduleController {
 
         List<UserScheduleResource> userScheduleResources = new ArrayList<>(records.size());
         for (UserScheduleRecord record : records) {
-            AccountRecord eater = userDao.get(record.getUserid());
+            UserRecord eater = userDao.get(record.getUserid());
             userScheduleResources.add(new UserScheduleResource(eater, record));
         }
         return userScheduleResources;
