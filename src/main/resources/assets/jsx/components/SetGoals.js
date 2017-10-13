@@ -5,7 +5,9 @@ class SetGoals extends Component {
     super()
     this.state = {
       cookGoals: 0,
-      eatGoals: 0
+      eatGoals: 0,
+      cookMeals: 0,
+      eatMeals: 0
     }
   }
   submitGoals(evt) {
@@ -21,37 +23,47 @@ class SetGoals extends Component {
   }
   render() {
     return (
-      <div id="setGoals">
-        Set your weekly goals.
+      <div id="goals">
+        <div id="setGoals">
+          Set your current goals.
         <div id="setGoalsForm">
-          <form>
-            Cook:
+            <form>
+              Cook:
             <input
-              name="cookGoals"
-              id="setGoalsCook"
-              type="number"
-              value={this.state.cookGoals}
-              min="0"
-              max="21"
-              onChange={this.handleFormChange}
-            />
-            Eat:
+                name="cookGoals"
+                id="setGoalsCook"
+                type="number"
+                value={this.state.cookGoals}
+                min="0"
+                max="21"
+                onChange={this.handleFormChange}
+              />
+              Eat:
             <input
-              name="eatGoals"
-              id="setGoalsEat"
-              type="number"
-              value={this.state.eatGoals}
-              min="0"
-              max="21"
-              onChange={this.handleFormChange}
-            />
-          </form>
+                name="eatGoals"
+                id="setGoalsEat"
+                type="number"
+                value={this.state.eatGoals}
+                min="0"
+                max="21"
+                onChange={this.handleFormChange}
+              />
+            </form>
+          </div>
+          <div id="setGoalsBtns">
+            <button
+              onClick={this.submitGoals}
+            >
+            </button>
+          </div>
+          <hr />
         </div>
-        <div id="setGoalsBtns">
-          <button
-            onClick={this.submitGoals}
-          >
-          </button>
+        <div id="runningGoals">
+          Your progress:
+          { this.state.eatGoals > 0 ?
+            <div>You have eaten {this.state.eatMeals} / {this.state.eatGoals} meals.</div> : null }
+          { this.state.cookGoals > 0 ?
+            <div>You have cooked {this.state.cookMeals} / {this.state.cookGoals} meals.</div> : null }
         </div>
       </div>
     )
