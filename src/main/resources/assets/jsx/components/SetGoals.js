@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 
 class SetGoals extends Component {
   constructor() {
@@ -9,14 +10,20 @@ class SetGoals extends Component {
       cookMeals: 0,
       eatMeals: 0
     }
+    this.handleFormChange = this.handleFormChange.bind(this)
+    this.submitGoals = this.submitGoals.bind(this)
   }
   submitGoals(evt) {
     evt.preventDefault()
     evt.stopPropagation()
-    //ajax request with goals
+      //ajax request to update goals for fake user
+      .then(() => {
+        //programmatically route to ScheduleEat
+      })
   }
   handleFormChange(evt) {
     evt.preventDefault()
+    console.log(evt.target.value)
     this.setState({
       [evt.target.name]: evt.target.value
     })
@@ -51,19 +58,25 @@ class SetGoals extends Component {
             </form>
           </div>
           <div id="setGoalsBtns">
-            <button
-              onClick={this.submitGoals}
-            >
+            <Route render={({ history }) => (
+              <button
+                type='button'
+                onClick={() => {
+                  history.push('/schedule-eat')
+                }}
+              >
+                Set Goals
             </button>
+            )} />
           </div>
           <hr />
         </div>
         <div id="runningGoals">
           Your progress:
-          { this.state.eatGoals > 0 ?
-            <div>You have eaten {this.state.eatMeals} / {this.state.eatGoals} meals.</div> : null }
-          { this.state.cookGoals > 0 ?
-            <div>You have cooked {this.state.cookMeals} / {this.state.cookGoals} meals.</div> : null }
+          {this.state.eatGoals > 0 ?
+            <div>You have eaten {this.state.eatMeals} / {this.state.eatGoals} meals.</div> : null}
+          {this.state.cookGoals > 0 ?
+            <div>You have cooked {this.state.cookMeals} / {this.state.cookGoals} meals.</div> : null}
         </div>
       </div>
     )

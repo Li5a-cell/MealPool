@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 
 import MainRouter from './MainRouter'
 import Signup from './Signup'
@@ -15,14 +15,21 @@ class App extends Component {
   }
   fakeLogin(evt, user) {
     evt.preventDefault()
-    this.setState({
-      isLoggedIn: true,
-      user: {
-        name: user.name,
-        email: user.email,
-        zip: user.zip
-      }
+    axios.put('/api/user', {
+      email: user.email,
+      displayName: user.name,
+      zip: user.zip
     })
+      .then(() => {
+        this.setState({
+          isLoggedIn: true,
+          user: {
+            name: user.name,
+            email: user.email,
+            zip: user.zip
+          }
+        })
+      })
   }
   render() {
     return (

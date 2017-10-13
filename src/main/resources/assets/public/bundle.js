@@ -28596,6 +28596,7 @@ var App = function (_Component) {
     key: 'fakeLogin',
     value: function fakeLogin(evt, user) {
       evt.preventDefault();
+      //ajax request to update dummy user with fake info
       this.setState({
         isLoggedIn: true,
         user: {
@@ -28846,6 +28847,8 @@ var SetGoals = function (_Component) {
       cookMeals: 0,
       eatMeals: 0
     };
+    _this.handleFormChange = _this.handleFormChange.bind(_this);
+    _this.submitGoals = _this.submitGoals.bind(_this);
     return _this;
   }
 
@@ -28854,12 +28857,13 @@ var SetGoals = function (_Component) {
     value: function submitGoals(evt) {
       evt.preventDefault();
       evt.stopPropagation();
-      //ajax request with goals
+      //ajax request to update goals for fake user
     }
   }, {
     key: "handleFormChange",
     value: function handleFormChange(evt) {
       evt.preventDefault();
+      console.log(evt.target.value);
       this.setState(_defineProperty({}, evt.target.name, evt.target.value));
     }
   }, {
@@ -28903,9 +28907,13 @@ var SetGoals = function (_Component) {
           _react2.default.createElement(
             "div",
             { id: "setGoalsBtns" },
-            _react2.default.createElement("button", {
-              onClick: this.submitGoals
-            })
+            _react2.default.createElement(
+              "button",
+              {
+                onClick: this.submitGoals
+              },
+              "Set Goals"
+            )
           ),
           _react2.default.createElement("hr", null)
         ),
