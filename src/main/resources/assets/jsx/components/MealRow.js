@@ -14,11 +14,12 @@ class MealRow extends Component {
     //ajax request
   }
   render() {
-    const meal = this.props.meal
+    const meal = this.props.meal.recipe
     return (
       <div className="mealRow">
         <img src={meal.photo} />
         <h4>{meal.title}</h4>
+        <p>{meal.description}</p>
         <div className="requestBtn">
           <button
             onClick={this.requestMeal}

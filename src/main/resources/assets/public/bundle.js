@@ -12216,7 +12216,7 @@ var MealRow = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var meal = this.props.meal;
+      var meal = this.props.meal.recipe;
       return _react2.default.createElement(
         "div",
         { className: "mealRow" },
@@ -12225,6 +12225,11 @@ var MealRow = function (_Component) {
           "h4",
           null,
           meal.title
+        ),
+        _react2.default.createElement(
+          "p",
+          null,
+          meal.description
         ),
         _react2.default.createElement(
           "div",
@@ -30552,6 +30557,28 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var fakeMeals = [{
+  pickUp: true,
+  sitDown: false,
+  chef: {
+    name: 'John Smith'
+  },
+  recipe: {
+    title: 'Apple Pie',
+    description: 'Scrumptious, definitely healthy'
+  }
+}, {
+  pickUp: true,
+  sitDown: false,
+  chef: {
+    name: 'Jane Doe'
+  },
+  recipe: {
+    title: 'Chicken Salad',
+    description: 'With apples, definitely healthy!'
+  }
+}];
+
 var ScheduleEat = function (_Component) {
   _inherits(ScheduleEat, _Component);
 
@@ -30561,7 +30588,7 @@ var ScheduleEat = function (_Component) {
     var _this = _possibleConstructorReturn(this, (ScheduleEat.__proto__ || Object.getPrototypeOf(ScheduleEat)).call(this));
 
     _this.state = {
-      meals: []
+      meals: fakeMeals //hard-coded for fake meals currently
     };
     _this.selectDay = _this.selectDay.bind(_this);
     return _this;

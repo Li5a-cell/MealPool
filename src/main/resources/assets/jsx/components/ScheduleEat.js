@@ -2,11 +2,36 @@ import React, { Component } from 'react'
 
 import MealRow from './MealRow.js'
 
+const fakeMeals = [
+  {
+    pickUp: true,
+    sitDown: false,
+    chef: {
+      name: 'John Smith'
+    },
+    recipe: {
+      title: 'Apple Pie',
+      description: 'Scrumptious, definitely healthy'
+    }
+  }, {
+    pickUp: true,
+    sitDown: false,
+    chef: {
+      name: 'Jane Doe'
+    },
+    recipe: {
+      title: 'Chicken Salad',
+      description: 'With apples, definitely healthy!'
+    }
+  }
+]
+
+
 class ScheduleEat extends Component {
   constructor() {
     super()
     this.state = {
-      meals: []
+      meals: fakeMeals //hard-coded for fake meals currently
     }
     this.selectDay = this.selectDay.bind(this)
   }
